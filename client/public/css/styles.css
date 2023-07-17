@@ -1,0 +1,147 @@
+/* Body Styles */
+
+body {
+    font-family: "Roboto Slab", "Ubuntu", sans-serif;
+    background-color: #d17300;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    overflow: hidden;
+}
+
+
+/* Header Styles */
+
+header {
+    text-align: left;
+    margin: 0;
+    padding: 2px 8px;
+}
+
+
+.home-link {
+    color: black;
+    text-decoration: none;
+}
+
+header h1 {
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+
+/* Home Styles */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 0 24px 0;
+    height: 90vh;
+}
+
+.homepage-icons {
+    position: relative;
+    flex-basis: 50px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.homepage-icons > .sun, .cloud, .storm, .snow {
+    margin: 0 24px 8px 24px;
+}
+
+
+.cover-heading {
+    font-size: 3.2rem;
+}
+
+.lead {
+    font-size: 1.9rem;
+    text-align: right;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    width: 120px;
+    background-color: #FDFFAE;
+    border-radius: 6px;
+    margin: 1.2% 2%;
+    color: #000;
+    display: inline-block;
+}
+
+.nav-link:hover {
+    background-color: #4FC0D0;
+}
+
+main>h1,
+p {
+    line-height: 3.8rem;
+}
+
+/* Home Animations */
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+        transform: scale(1.15);
+    }
+}
+
+.homepage-icons {
+    animation: bounce 2s linear infinite alternate;
+}
+
+
+/* Form Styles */
+
+.form-frame {
+    background-color: #ecf0f1;
+    text-align: center;
+    border-radius: 2%;
+    border: 1px solid #000;
+    height: 480px;
+}
+
+.form-title {
+    text-align: center;
+    margin: 1.1rem 0;
+}
+
+input {
+    margin: 10px 0;
+    width: 30rem;
+}
+
+.submit-btn {
+    background-color: #2d3436;
+    margin-top: 12px;
+}
+
+.submit-btn:hover {
+    background-color: #d17300;
+}
+
+/* Footer Styles */
+
+footer {
+    position: fixed;
+    bottom: 1.8rem;
+    left: 0;
+    right: 0;
+    padding: 16px 32px;
+    height: 1.9rem;
+    text-align: center;
+}
+
+footer p {
+    color: #000;
+}
