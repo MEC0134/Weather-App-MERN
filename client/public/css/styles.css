@@ -125,6 +125,7 @@ input {
 
 .submit-btn {
     display: block;
+    width: 6rem;
     background-color: #2d3436;
     margin: 12px auto 0 auto;
 }
