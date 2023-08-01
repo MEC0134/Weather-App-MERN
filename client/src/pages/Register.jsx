@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import IconButton from '@mui/material/IconButton';
 
 
 const Register = () => {
@@ -73,12 +76,11 @@ const Register = () => {
   return (
     <>
       <div className="row align-items-center" style={{ height: "87vh" }}>
-        <div
-          className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "515px" }}>
+        <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "525px" }}>
           <h1 className="form-title">Register</h1>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="useremail">Email</label>
             <input
+              placeholder="Email"
               type="email"
               value={formData.email}
               name="email"
@@ -86,8 +88,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
-            <label htmlFor="username">Username</label>
             <input
+              placeholder="Username"
               type="text"
               value={formData.username}
               name="username"
@@ -95,8 +97,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
-            <label htmlFor="password">Password</label>
             <input
+              placeholder="Password"
               type="password"
               value={formData.password}
               name="password"
@@ -104,8 +106,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
-            <label htmlFor="confirmpassword">Confirm Password</label>
             <input
+              placeholder="Confirm Passsword"
               type="password"
               value={formData.confirmpassword}
               name="confirmpassword"
@@ -114,11 +116,19 @@ const Register = () => {
               required
             />
             <button type="submit" className="btn btn-primary submit-btn">Register</button>
-            <p> Already have an account?<Link to={"/login"}>Login</Link></p>
+            <p className="redirect-login"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
+            <div className="social-icons">
+            <hr/>
+            <p>Signup with</p>
+              <IconButton><GoogleIcon  className="icon-google" /></IconButton>
+              <IconButton className="icon-fb"><FacebookIcon /></IconButton>
+            </div>
           </form>
+
         </div>
         <ToastContainer />
       </div>
+
     </>
   );
 }

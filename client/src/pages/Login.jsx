@@ -31,27 +31,29 @@ const Login = () => {
 
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         try {
-            const {data} = await axios.post("https://localhost:8000/login", {
+            const { data } = await axios.post("http://localhost:8000/login", {
                 ...formData
-            }, {withCredentials: true});
-            console.log(data);
+            }, { withCredentials: true });
 
-            const {success, message} = data; 
+            const { success, message } = data;
 
-            if(success){
-                handleSuccess(nessage);
+            if (success) {
+                handleSuccess(message);
                 setTimeout(() => {
                     navigate('/home')
-                })
+                }, 1000);
+            } else {
+                handleError(message);
             }
         } catch (error) {
-            
+            console.log(error);
+            console.log("ERROR");
         }
+        setFormData({ username: "", password: "" });
     }
-
 
     return (
         <div className="row align-items-center" style={{ height: "87vh" }}>
@@ -66,6 +68,7 @@ const Login = () => {
                     <p>Don't have an account?<Link to={"/register"}>Register</Link></p>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 }

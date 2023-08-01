@@ -5,6 +5,7 @@ import Header from "./layouts/Header";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 // Tutorial: https://www.freecodecamp.org/news/how-to-secure-your-mern-stack-application/#howtosetuptheprojectenvironment
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Welcome />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/home" element={<Home/>}></Route>
         </Routes>
 
       <Footer />

@@ -39,15 +39,16 @@ module.exports.Signup = async (req, res, next) => {
 
 module.exports.Login = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        if (!email || !password) {
+        if (!username || !password) {
             return res.status(400).json({ message: "All fields are required!" });
         }
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
+            console.log('here is the error');
             return res.status(404).json({ message: 'User not found' })
         }
 
@@ -63,6 +64,7 @@ module.exports.Login = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
         });
+
 
         res.status(201).json({ message: "User logged in successfully", success: true });
         next()

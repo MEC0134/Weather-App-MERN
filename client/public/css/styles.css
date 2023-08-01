@@ -31,7 +31,7 @@ header h1 {
 
 /* Home Styles */
 
-.home-container {
+.welcome-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,14 +41,14 @@ header h1 {
     height: 90vh;
 }
 
-.homepage-icons {
+.welcome-icons {
     position: relative;
     flex-basis: 50px;
     justify-content: space-around;
     align-items: center;
 }
 
-.homepage-icons>.sun,
+.welcome-icons>.sun,
 .cloud,
 .storm,
 .snow {
@@ -99,7 +99,7 @@ p {
     }
 }
 
-.homepage-icons {
+.welcome-icons {
     animation: bounce 2s linear infinite alternate;
 }
 
@@ -115,23 +115,41 @@ p {
 
 .form-title {
     text-align: center;
-    margin: 1.1rem 0;
+    font-size: 2.4em;
+    margin: 12px 0 32px 0;
 }
 
 input {
-    margin: 10px 0;
+    margin: 28px 0;
     width: 30rem;
 }
 
 .submit-btn {
-    display: block;
+    display: inline-block;
     width: 6rem;
     background-color: #2d3436;
-    margin: 12px auto 0 auto;
+    margin: 0 auto 26px auto;
 }
 
 .submit-btn:hover {
     background-color: #d17300;
+}
+
+.redirect-login {
+    font-size: 0.9rem;
+    line-height: 0rem;
+}
+
+
+.social-icons>p {
+    display: inline-block;
+}
+
+.icon-google:hover {
+    color: #DB4437;
+}
+.icon-fb:hover {
+    color: #2050b3;
 }
 
 /* Footer Styles */
