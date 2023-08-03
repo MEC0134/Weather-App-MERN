@@ -19,7 +19,6 @@ const Register = () => {
   });
 
   function handleInput(event) {
-
     const { name, value } = event.target;
     setformData(({
       ...formData,
@@ -27,12 +26,18 @@ const Register = () => {
     }));
   }
 
+  const googleAuth = () => {
+    window.open('http://localhost:8000/auth/google/callback');
+  }
+  const facebookAuth = () => {
+    window.open('http://localhost:8000/auth/facebook/callback');
+  }
+
   // notifications
   const handleError = err =>
     toast.error(err, {
       position: "bottom-left",
     });
-
   const handleSuccess = msg =>
     toast.success(msg, {
       position: "bottom-right",
@@ -116,12 +121,16 @@ const Register = () => {
               required
             />
             <button type="submit" className="btn btn-primary submit-btn">Register</button>
-            <p className="redirect-login"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
+            <p className="redirect-user"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
+            <div className="Oauth-seperator">
+              <hr></hr>
+              <span>or</span>
+              <hr></hr>
+            </div>
             <div className="social-icons">
-            <hr/>
-            <p>Signup with</p>
-              <IconButton><GoogleIcon  className="icon-google" /></IconButton>
-              <IconButton className="icon-fb"><FacebookIcon /></IconButton>
+              <p>Signup with</p>
+              <IconButton onClick={googleAuth}><GoogleIcon className="icon-google" /></IconButton>
+              <IconButton onClick={facebookAuth}><FacebookIcon className="icon-fb" /></IconButton>
             </div>
           </form>
 

@@ -5,8 +5,9 @@ const app = express();
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute"); 
+const passport = require("passport");
+const cookieSession = require("cookie-session");
 const { MONGO_URL, PORT } = process.env;
-
 
 mongoose
     .connect(MONGO_URL, {
@@ -23,8 +24,14 @@ app.use(cors({
     })
 );
 
-app.use(cookieParser());
+// https://www.youtube.com/watch?v=pdd04JzJrDw&t=160s
 
+app.use(cookieSession({name: "session", keys: ["wolf"], maxAge: 24 * 60 * 60 * 100}))
+
+
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 
 app.use("/", authRoute);

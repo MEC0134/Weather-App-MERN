@@ -3,8 +3,6 @@ const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcrypt");
 
 
-
-
 module.exports.Signup = async (req, res, next) => {
 
     try {
@@ -34,7 +32,6 @@ module.exports.Signup = async (req, res, next) => {
         console.error(err);
     }
 }
-
 
 
 module.exports.Login = async (req, res, next) => {

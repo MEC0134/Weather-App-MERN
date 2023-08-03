@@ -128,14 +128,14 @@ input {
     display: inline-block;
     width: 6rem;
     background-color: #2d3436;
-    margin: 0 auto 26px auto;
+    margin: 0 auto 32px auto;
 }
 
 .submit-btn:hover {
     background-color: #d17300;
 }
 
-.redirect-login {
+.redirect-user {
     font-size: 0.9rem;
     line-height: 0rem;
 }
@@ -151,6 +151,17 @@ input {
 .icon-fb:hover {
     color: #2050b3;
 }
+
+hr {
+    display: inline-block;
+    line-height: 0;
+    margin: 0 12px 0 12px;
+    width: 42%;
+}
+
+hr > p {
+    line-height: 0;
+}  
 
 /* Footer Styles */
 
@@ -177,4 +188,14 @@ footer p {
     border-radius: 4px;
     font-size: 14px;
     margin-top: 20px;
+}
+
+
+
+/* Media Queries */
+
+@media(max-width: 900px) {
+    .Oauth-seperator {
+        display: none;
+    }
 }
