@@ -7,7 +7,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 
-// Tutorial: https://www.freecodecamp.org/news/how-to-secure-your-mern-stack-application/#howtosetuptheprojectenvironment
 
 function App() {
 

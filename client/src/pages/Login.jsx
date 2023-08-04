@@ -26,12 +26,9 @@ const Login = () => {
     };
 
     const googleAuth = () => {
-        window.open('http://localhost:8000/auth/google');
+        window.open("http://localhost:8000/auth/google", "_self");
       }
-      const facebookAuth = () => {
-        window.open('http://localhost:8000/auth/facebook');
-      }
-    
+
 
     const handleError = (err) =>
         toast.error(err, {
@@ -87,7 +84,7 @@ const Login = () => {
                     <div className="social-icons">
                         <p>Signup with</p>
                         <IconButton onClick={googleAuth}><GoogleIcon className="icon-google" /></IconButton>
-                        <IconButton onClick={facebookAuth}><FacebookIcon className="icon-fb" /></IconButton>
+                        <IconButton ><FacebookIcon className="icon-fb" /></IconButton>
                     </div>
                 </form>
             </div>

@@ -27,10 +27,7 @@ const Register = () => {
   }
 
   const googleAuth = () => {
-    window.open('http://localhost:8000/auth/google/callback');
-  }
-  const facebookAuth = () => {
-    window.open('http://localhost:8000/auth/facebook/callback');
+    window.open("http://localhost:8000/auth/google", "_self");
   }
 
   // notifications
@@ -73,7 +70,6 @@ const Register = () => {
       }
       setformData({ ...formData, email: "", username: "", password: "", confirmpassword: "" });
     }
-
   }
 
 
@@ -130,7 +126,7 @@ const Register = () => {
             <div className="social-icons">
               <p>Signup with</p>
               <IconButton onClick={googleAuth}><GoogleIcon className="icon-google" /></IconButton>
-              <IconButton onClick={facebookAuth}><FacebookIcon className="icon-fb" /></IconButton>
+              <IconButton ><FacebookIcon className="icon-fb" /></IconButton>
             </div>
           </form>
 

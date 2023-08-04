@@ -5,29 +5,15 @@ const findOrCreate = require('mongoose-findorcreate');
 
 
 const userSchema = new mongoose.Schema({
-    googleId: String, 
+    googleId: String,
     facebookId: String,
-    email: {
-        type: String,
-        required: [true, "Your email address is required"],
-        unique: true,
-    },
-    username: {
-        type: String,
-        required: [true, "Your username is required"],
-    },
-    password: {
-        type: String,
-        required: [false, "Your password is required"],
-    },
+    email: String,
+    username: String,
+    password: String,
 });
 
 
 userSchema.plugin(findOrCreate);
-
-userSchema.pre("save", async function () {
-    this.password = await bcrypt.hash(this.password, 12);
-});
 
 
 module.exports = mongoose.model("User", userSchema);

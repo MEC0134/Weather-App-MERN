@@ -1,16 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute"); 
 const passport = require("passport");
-const cookieSession = require("cookie-session");
-const { MONGO_URL, PORT } = process.env;
+const session = require('express-session')
+require("./Controllers/OAuthController");
 
 mongoose
-    .connect(MONGO_URL, {
+    .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -24,9 +24,13 @@ app.use(cors({
     })
 );
 
-// https://www.youtube.com/watch?v=pdd04JzJrDw&t=160s
 
-app.use(cookieSession({name: "session", keys: ["wolf"], maxAge: 24 * 60 * 60 * 100}))
+app.use(session({
+   secret: 'somethingsecretgoeshere',
+   resave: false,
+   saveUninitialized: true,
+   cookie: { secure: true }
+}));
 
 
 app.use(cookieParser());
@@ -35,6 +39,7 @@ app.use(passport.session());
 app.use(express.json());
 
 app.use("/", authRoute);
+app.use("/auth", authRoute);
 
 
 
@@ -58,7 +63,7 @@ app.use("/", authRoute);
 
 
 
-
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
