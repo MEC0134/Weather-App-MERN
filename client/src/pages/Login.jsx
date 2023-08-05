@@ -25,11 +25,6 @@ const Login = () => {
         });
     };
 
-    const googleAuth = () => {
-        window.open("http://localhost:8000/auth/google", "_self");
-      }
-
-
     const handleError = (err) =>
         toast.error(err, {
             position: "bottom-left",
@@ -66,26 +61,17 @@ const Login = () => {
     }
 
 
-
     return (
         <div className="row align-items-center" style={{ height: "87vh" }}>
-            <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "410px" }}>
+            <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "375px" }}>
                 <h1 className="form-title">Login</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Username" name="username" value={formData.username} className="form-control" onChange={handleInput} required></input>
-                    <input type="password" placeholder="Password" name="password" value={formData.password} className="form-control" onChange={handleInput} required></input>
-                    <button className="btn btn-primary submit-btn" type="submit">Login</button>
+                    <label htmlFor="username">Username</label>
+                    <input type="text"  name="username" value={formData.username} className="form-control" onChange={handleInput} required></input>
+                    <label htmlFor="password">Password</label>
+                    <input type="password"  name="password" value={formData.password} className="form-control" onChange={handleInput} required></input>
+                    <button className="btn btn-primary" type="submit">Login</button>
                     <p className="redirect-user">Don't have an account?<Link style={{ textDecoration: "none" }} to={"/register"}>Register</Link></p>
-                    <div className="Oauth-seperator">
-                        <hr></hr>
-                        <span>or</span>
-                        <hr></hr>
-                    </div>
-                    <div className="social-icons">
-                        <p>Signup with</p>
-                        <IconButton onClick={googleAuth}><GoogleIcon className="icon-google" /></IconButton>
-                        <IconButton ><FacebookIcon className="icon-fb" /></IconButton>
-                    </div>
                 </form>
             </div>
             <ToastContainer />

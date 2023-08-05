@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import IconButton from '@mui/material/IconButton';
 
 
 const Register = () => {
@@ -24,10 +21,6 @@ const Register = () => {
       ...formData,
       [name]: value
     }));
-  }
-
-  const googleAuth = () => {
-    window.open("http://localhost:8000/auth/google", "_self");
   }
 
   // notifications
@@ -80,8 +73,8 @@ const Register = () => {
         <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "525px" }}>
           <h1 className="form-title">Register</h1>
           <form onSubmit={handleSubmit}>
+            <label htmlFor="email">Email</label>
             <input
-              placeholder="Email"
               type="email"
               value={formData.email}
               name="email"
@@ -89,8 +82,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
+            <label htmlFor="username">Username</label>
             <input
-              placeholder="Username"
               type="text"
               value={formData.username}
               name="username"
@@ -98,8 +91,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
+            <label htmlFor="password">Password</label>
             <input
-              placeholder="Password"
               type="password"
               value={formData.password}
               name="password"
@@ -107,8 +100,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
+            <label htmlFor="confirmpassword">Confirm Password</label>
             <input
-              placeholder="Confirm Passsword"
               type="password"
               value={formData.confirmpassword}
               name="confirmpassword"
@@ -116,18 +109,8 @@ const Register = () => {
               onChange={handleInput}
               required
             />
-            <button type="submit" className="btn btn-primary submit-btn">Register</button>
+            <button type="submit" className="btn btn-primary ">Register</button>
             <p className="redirect-user"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
-            <div className="Oauth-seperator">
-              <hr></hr>
-              <span>or</span>
-              <hr></hr>
-            </div>
-            <div className="social-icons">
-              <p>Signup with</p>
-              <IconButton onClick={googleAuth}><GoogleIcon className="icon-google" /></IconButton>
-              <IconButton ><FacebookIcon className="icon-fb" /></IconButton>
-            </div>
           </form>
 
         </div>

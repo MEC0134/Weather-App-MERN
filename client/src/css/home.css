@@ -1,0 +1,25 @@
+#home-page {
+    height: 100vh;
+    background-color: #FFFBF5;
+}
+
+.home-wrapper {
+    height: 75vh;
+    margin: auto auto;
+    text-align: center;
+}
+
+.home-title {
+    padding: 12px;
+}
+
+
+.btn-logout {
+}
+
+
+
+
+
+
+

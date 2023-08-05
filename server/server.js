@@ -5,9 +5,6 @@ const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute"); 
-const passport = require("passport");
-const session = require('express-session')
-require("./Controllers/OAuthController");
 
 mongoose
     .connect(process.env.MONGO_URL, {
@@ -25,21 +22,10 @@ app.use(cors({
 );
 
 
-app.use(session({
-   secret: 'somethingsecretgoeshere',
-   resave: false,
-   saveUninitialized: true,
-   cookie: { secure: true }
-}));
-
-
 app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.json());
 
 app.use("/", authRoute);
-app.use("/auth", authRoute);
 
 
 

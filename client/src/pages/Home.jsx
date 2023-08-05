@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
-
+import '../css/home.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,17 +31,33 @@ const Home = () => {
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
-  const Logout = () => {
-    removeCookie("token");
-    navigate('/');
-  };
+  // const Logout = () => {
+  //   removeCookie("token");
+  //   navigate('/');
+  // };
 
   return (
     <>
-      <div className="home-page">
-        <h4>Welcome <span>{username}</span></h4>
+      <div id="home-page">
+        <div className="home-wrapper">
+          <h4 className="home-title">Hi {username}</h4>
+          <h5>Lets set up your app settings, please choose your location and other details for your app.</h5>
+          <div className="row align-items-center" style={{ height: "60vh" }}>
+            <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "410px" }}>
+              <label>Country</label>
+              <input className="form-control"></input>
+              <label>City</label>
+              <input className="form-control"></input>
+              <label>Joke Type</label>
+              <input className="form-control"></input>
+            </div>
+          </div>
 
-        <button  onClick={Logout}>Logout</button>
+
+          {/* <div className="logout">
+            <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
+          </div> */}
+        </div>
       </div>
       <ToastContainer />
     </>

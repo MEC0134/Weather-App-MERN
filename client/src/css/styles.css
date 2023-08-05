@@ -7,6 +7,18 @@ body {
     overflow: hidden;
 }
 
+button {
+    display: inline-block;
+    width: 6rem;
+    background-color: #2d3436;
+    margin: 12px auto 32px auto;
+}
+
+
+.btn:hover {
+    background-color: #d17300;
+}
+
 
 /* Header Styles */
 
@@ -29,7 +41,7 @@ header h1 {
 }
 
 
-/* Home Styles */
+/* Welcome Styles */
 
 .welcome-container {
     display: flex;
@@ -84,7 +96,7 @@ p {
     line-height: 3.8rem;
 }
 
-/* Home Animations */
+/* Welcom Animations */
 
 @keyframes bounce {
 
@@ -116,52 +128,24 @@ p {
 .form-title {
     text-align: center;
     font-size: 2.4em;
-    margin: 12px 0 32px 0;
+    margin: 12px 0 12px 0;
+}
+
+label {
+    float: left;
+    margin-bottom: 12px;
 }
 
 input {
-    margin: 28px 0;
+    margin: 12px 0;
     width: 30rem;
 }
 
-.submit-btn {
-    display: inline-block;
-    width: 6rem;
-    background-color: #2d3436;
-    margin: 0 auto 32px auto;
-}
-
-.submit-btn:hover {
-    background-color: #d17300;
-}
 
 .redirect-user {
     font-size: 0.9rem;
     line-height: 0rem;
 }
-
-
-.social-icons>p {
-    display: inline-block;
-}
-
-.icon-google:hover {
-    color: #DB4437;
-}
-.icon-fb:hover {
-    color: #2050b3;
-}
-
-hr {
-    display: inline-block;
-    line-height: 0;
-    margin: 0 12px 0 12px;
-    width: 42%;
-}
-
-hr > p {
-    line-height: 0;
-}  
 
 /* Footer Styles */
 
@@ -189,8 +173,6 @@ footer p {
     font-size: 14px;
     margin-top: 20px;
 }
-
-
 
 /* Media Queries */
 
