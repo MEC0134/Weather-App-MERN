@@ -6,12 +6,12 @@ const jwt = require("jsonwebtoken");
 // check if user has access to route by checking if tokens match
 module.exports.userVerification = (req, res) => {
 
-    const regMethod = ''; 
-
     const token = req.cookies.token;
     if (!token) {
         return res.json({ status: false });
     }
+
+    console.log(req.body);
 
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
         if (err) {

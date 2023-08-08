@@ -6,6 +6,7 @@ import Welcome from "./pages/Welcome";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import UserChoice from "./pages/UserChoice";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/home" element={<Home/>}></Route>
+          <Route path="/choice" element={<UserChoice/>}></Route>
         </Routes>
 
       <Footer />

@@ -10,7 +10,6 @@ body {
 button {
     display: inline-block;
     width: 6rem;
-    background-color: #2d3436;
     margin: 12px auto 32px auto;
 }
 
