@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import '../css/home.css';
+import '../css/VerifiedUser.css';
 
 
 const UserChoice = () => {
@@ -21,10 +21,10 @@ const UserChoice = () => {
 
     const handleInput = (event) => {
         const { name, value } = event.target;
-        setUserChoice({
+        setUserChoice(({
             ...userChoice,
             [name]: value
-        });
+        }));
     };
 
     useEffect(() => {
@@ -42,15 +42,24 @@ const UserChoice = () => {
             const { status, user } = data;
             setUsername(user);
 
-            return status ? toast(`Hello ${user}`, { position: "top-right" }) : (removeCookie("token"), navigate("/login"));
+            return status ? ' ' : (removeCookie("token"), navigate("/login"));
         };
+
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
 
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-        console.log(userChoice)
+         const formData = await axios.post("http://localhost:8000/home", {...userChoice},
+         {withCredentials: true}); 
+
+
+
+        console.log(userChoice);
+
+        setUserChoice({ country: "", city: "", category: ""});
     }
 
 
@@ -61,22 +70,21 @@ const UserChoice = () => {
                 <h5>Lets set up your app settings, please choose your location and joke category for your app.</h5>
                 <div className="row align-items-center" style={{ height: "60vh" }}>
                     <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "300px" }}>
-                        <form>
-                            <input onChange={handleInput} placeholder="Country"  className="form-control"></input>
-                            <input onChange={handleInput} placeholder="City"  className="form-control"></input>
-                            <select className="dropdown" name="dropdown">
+                        <form onSubmit={handleSubmit} >
+                            <input onChange={handleInput} value={userChoice.country} name="country" type="text" placeholder="Country"  className="form-control" required></input>
+                            <input onChange={handleInput} value={userChoice.city} name="city" type="text" placeholder="City"  className="form-control" required></input>
+                            <select onChange={handleInput} className="dropdown" value={userChoice.category} name="category">
                                 <option value="Programming">Programming</option>
                                 <option value="Misc">Random</option>
                                 <option value="Dark">Dark</option>
                                 <option value="Spooky">Spooky</option>
                                 <option value="Pun">Pun</option>
                             </select>
-                            <button onClick={handleSubmit} className="btn btn-primary choiceForm-btn" type="submit">Submit</button>
+                            <button className="btn btn-primary choiceForm-btn" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </>
     )
 }

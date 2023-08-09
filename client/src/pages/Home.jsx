@@ -1,7 +1,7 @@
 import UserChoice from "./UserChoice";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import '../css/home.css';
+import '../css/VerifiedUser.css';
 
 const Home = () => {
 

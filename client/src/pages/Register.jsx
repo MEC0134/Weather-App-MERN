@@ -26,8 +26,9 @@ const Register = () => {
   // notifications
   const handleError = err =>
     toast.error(err, {
-      position: "bottom-left",
+      position: "top-center"
     });
+
   const handleSuccess = msg =>
     toast.success(msg, {
       position: "bottom-right",
@@ -42,25 +43,28 @@ const Register = () => {
     } else {
 
       try {
-        const { data } = await axios.post("http://localhost:8000/signup",
-          {
-            ...formData
-          }, { withCredentials: true });
+        const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
+
+        console.log("Response data:", data); // Log the response data for debugging
 
         const { success, message } = data;
+        console.log("Success Value: ", success);
 
         if (success) {
-          handleSuccess("Registration Successful");
+          handleSuccess(message);
           setTimeout(() => {
             navigate('/login');
           }, 1000);
-        } else {
-          handleError(message);
         }
-        console.log(data);
+
       } catch (error) {
-        console.log(error);
+        if (!error.response.data.success) {
+          handleError(error.response.data.message);
+        }
+
+        console.log("Axios error:", error);
       }
+
       setformData({ ...formData, email: "", username: "", password: "", confirmpassword: "" });
     }
   }

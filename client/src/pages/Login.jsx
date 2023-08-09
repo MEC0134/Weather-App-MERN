@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import IconButton from '@mui/material/IconButton';
-
 
 
 const Login = () => {
@@ -27,11 +23,11 @@ const Login = () => {
 
     const handleError = (err) =>
         toast.error(err, {
-            position: "bottom-left",
+            position: "bottom-right",
         });
     const handleSuccess = (msg) =>
         toast.success(msg, {
-            position: "bottom-left",
+            position: "bottom-right",
         });
 
 
@@ -48,15 +44,19 @@ const Login = () => {
             if (success) {
                 handleSuccess(message);
                 setTimeout(() => {
-                    navigate('/choice')
+                    navigate('/choice');
                 }, 1000);
-            } else {
-                handleError(message);
             }
+
         } catch (error) {
+            if (error.response.status === 401) {
+                handleError(error.response.data.message);
+            } else if (error.response.status === 404) {
+                handleError(error.response.data.message);
+            }
             console.log(error);
-            console.log("ERROR");
         }
+
         setFormData({ username: "", password: "" });
     }
 
@@ -67,9 +67,9 @@ const Login = () => {
                 <h1 className="form-title">Login</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username">Username</label>
-                    <input type="text"  name="username" value={formData.username} className="form-control" onChange={handleInput} required></input>
+                    <input type="text" name="username" value={formData.username} className="form-control" onChange={handleInput} required></input>
                     <label htmlFor="password">Password</label>
-                    <input type="password"  name="password" value={formData.password} className="form-control" onChange={handleInput} required></input>
+                    <input type="password" name="password" value={formData.password} className="form-control" onChange={handleInput} required></input>
                     <button className="btn btn-primary" type="submit">Login</button>
                     <p className="redirect-user">Don't have an account?<Link style={{ textDecoration: "none" }} to={"/register"}>Register</Link></p>
                 </form>

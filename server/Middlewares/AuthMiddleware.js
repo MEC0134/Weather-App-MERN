@@ -11,7 +11,6 @@ module.exports.userVerification = (req, res) => {
         return res.json({ status: false });
     }
 
-    console.log(req.body);
 
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
         if (err) {

@@ -9,9 +9,9 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     UserChoice: {
-        Country: String, 
-        City: String, 
-        JokeCategory: String
+        Country: {type: String, default: null}, 
+        City: {type: String, default: null}, 
+        JokeCategory: {type: String, default: null}
     }
 });
 

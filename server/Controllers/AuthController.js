@@ -13,9 +13,9 @@ module.exports.Signup = async (req, res, next) => {
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            return res.status(409).json({ message: "User already exists!" });
+            return res.status(409).json({ message: "User already exists", success: false });
         }
-
+        
         const user = await User.create({ email, password, username });
         const token = createSecretToken(user._id); // generate token for new user
 
@@ -24,7 +24,7 @@ module.exports.Signup = async (req, res, next) => {
             httpOnly: false
         });
 
-        res.status(201).json({ message: "User signed in successfully", success: true, user });
+        res.status(201).json({ message: "User registered successfully", success: true, user });
         next();
     }
     catch (err) {
@@ -37,21 +37,16 @@ module.exports.Login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
 
-        if (!username || !password) {
-            return res.status(400).json({ message: "All fields are required!" });
-        }
-
         const user = await User.findOne({ username });
 
         if (!user) {
-            console.log('here is the error');
-            return res.status(404).json({ message: 'User not found' })
+            return res.status(404).json({ message: 'User not found!'});
         }
 
-        const auth = await bcrypt.compare(password, user.password)
+        const auth = await bcrypt.compare(password, user.password);
 
         if (!auth) {
-            return res.status(401).json({ message: 'Incorrect password or email' })
+            return res.status(401).json({ message: 'Incorrect username or password!'});
         }
 
         const token = createSecretToken(user._id);
@@ -61,9 +56,8 @@ module.exports.Login = async (req, res, next) => {
             httpOnly: false,
         });
 
-
-        res.status(201).json({ message: "User logged in successfully", success: true });
-        next()
+        res.status(201).json({ message: "Login Successfull", success: true });
+        next();
 
     } catch (error) {
         console.error(error);
