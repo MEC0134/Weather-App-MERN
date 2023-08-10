@@ -39,12 +39,18 @@ const Login = () => {
                 ...formData
             }, { withCredentials: true });
 
-            const { success, message } = data;
+            const {  appSetUp, success, message } = data;
+            console.log(appSetUp);
 
-            if (success) {
+            if (!appSetUp && success) {
                 handleSuccess(message);
                 setTimeout(() => {
                     navigate('/choice');
+                }, 1000);
+            } else {
+                handleSuccess(message);
+                setTimeout(() => {
+                    navigate('/home');
                 }, 1000);
             }
 

@@ -1,4 +1,3 @@
-import UserChoice from "./UserChoice";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import '../css/VerifiedUser.css';
@@ -18,11 +17,10 @@ const Home = () => {
   return (
     <>
      
-        <UserChoice/>
 
-          {/* <div className="logout">
+          <div className="logout">
             <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
-          </div> */}
+          </div>
     </>
   )
 }

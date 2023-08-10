@@ -15,9 +15,9 @@ module.exports.Signup = async (req, res, next) => {
         if (existingUser) {
             return res.status(409).json({ message: "User already exists", success: false });
         }
-        
+
         const user = await User.create({ email, password, username });
-        const token = createSecretToken(user._id); // generate token for new user
+        const token = createSecretToken(user._id);
 
         res.cookie("token", token, {
             withCredentials: true,
@@ -40,13 +40,13 @@ module.exports.Login = async (req, res, next) => {
         const user = await User.findOne({ username });
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found!'});
+            return res.status(404).json({ message: 'User not found!' });
         }
 
         const auth = await bcrypt.compare(password, user.password);
 
         if (!auth) {
-            return res.status(401).json({ message: 'Incorrect username or password!'});
+            return res.status(401).json({ message: 'Incorrect username or password!' });
         }
 
         const token = createSecretToken(user._id);
@@ -56,7 +56,12 @@ module.exports.Login = async (req, res, next) => {
             httpOnly: false,
         });
 
-        res.status(201).json({ message: "Login Successfull", success: true });
+        if (user.UserChoice.Country === null || user.UserChoice.City === null) {
+            res.status(201).json({ message: "Login Successfull", success: true, appSetUp: false });
+        } else {
+            res.status(201).json({message: "Login Successfull", success: true, appSetUp: true});
+        }
+        
         next();
 
     } catch (error) {

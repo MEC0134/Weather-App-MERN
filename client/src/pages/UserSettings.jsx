@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import '../css/VerifiedUser.css';
 
 
-const UserChoice = () => {
+const UserSettings = () => {
 
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
@@ -52,14 +52,24 @@ const UserChoice = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-         const formData = await axios.post("http://localhost:8000/home", {...userChoice},
-         {withCredentials: true}); 
+        try {
 
+            const formData = await axios.post("http://localhost:8000/home", { ...userChoice, user: username }, { withCredentials: true });
 
+            const { message, success, user } = formData.data;
 
-        console.log(userChoice);
+            if (success) {
+                setTimeout(() => {
+                    navigate("/home");
+                }, 1000);
+            }
 
-        setUserChoice({ country: "", city: "", category: ""});
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+        }
+
+        setUserChoice({ country: "", city: "", category: "" });
     }
 
 
@@ -71,9 +81,10 @@ const UserChoice = () => {
                 <div className="row align-items-center" style={{ height: "60vh" }}>
                     <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "300px" }}>
                         <form onSubmit={handleSubmit} >
-                            <input onChange={handleInput} value={userChoice.country} name="country" type="text" placeholder="Country"  className="form-control" required></input>
-                            <input onChange={handleInput} value={userChoice.city} name="city" type="text" placeholder="City"  className="form-control" required></input>
-                            <select onChange={handleInput} className="dropdown" value={userChoice.category} name="category">
+                            <input onChange={handleInput} value={userChoice.country} name="country" type="text" placeholder="Country" className="form-control" required></input>
+                            <input onChange={handleInput} value={userChoice.city} name="city" type="text" placeholder="City" className="form-control" required></input>
+                            <select onChange={handleInput} className="form-control select" value={userChoice.category} name="category">
+                                <option value="" disabled>Joke category</option>
                                 <option value="Programming">Programming</option>
                                 <option value="Misc">Random</option>
                                 <option value="Dark">Dark</option>
@@ -90,4 +101,4 @@ const UserChoice = () => {
 }
 
 
-export default UserChoice;
+export default UserSettings;
