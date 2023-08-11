@@ -6,6 +6,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute"); 
 
+
 mongoose
     .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
@@ -21,6 +22,8 @@ app.use(cors({
     })
 );
 
+
+//SOLVE REMOVE COOKIE ISSUE FOR PRIVATE ROUTES 
 
 app.use(cookieParser());
 app.use(express.json());

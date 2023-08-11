@@ -7,7 +7,7 @@ let year = new Date().getFullYear();
 function Footer() {
 
     return (
-        <footer><p>Copright &copy;{year}</p></footer>
+        <footer><p>Copright &copy; {year}</p></footer>
     )
 }
 
