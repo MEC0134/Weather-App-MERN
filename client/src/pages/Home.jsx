@@ -7,28 +7,40 @@ import { useState, useEffect } from "react";
 const Home = () => {
 
   const [joke, setJoke] = useState("");
+  const [userChoice, setUserChoice] = useState({});
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    const getJoke = async () => {
+
+    const fetchData = async () => {
 
       if (!cookies.token) {
         navigate("/login");
       }
 
-        const { data } = await axios.post("http://localhost:8000/home",
+      try {
+        const { data } = await axios.post("http://localhost:8000/login",
           {},
           { withCredentials: true });
 
-        const { success, user, userJoke } = data;
-
+        const { success, appSettings } = data;
         console.log(data);
-        setJoke(userJoke);
-    }
-    getJoke();
-  }, []);
+
+
+        // if (success) {
+        //   setJoke(app);
+        //   setUserChoice(user.UserChoice); // Store the user's settings
+        // }
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [cookies, navigate]);
 
 
 

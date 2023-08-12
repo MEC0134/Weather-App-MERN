@@ -40,12 +40,11 @@ const Login = () => {
             }, { withCredentials: true });
 
             const {  appSetUp, success, message } = data;
-            console.log(appSetUp);
 
             if (!appSetUp && success) {
                 handleSuccess(message);
                 setTimeout(() => {
-                    navigate('/choice');
+                    navigate('/userSettings');
                 }, 1000);
             } else {
                 handleSuccess(message);

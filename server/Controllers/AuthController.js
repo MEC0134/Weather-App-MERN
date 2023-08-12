@@ -37,7 +37,8 @@ module.exports.Login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username }).populate('UserChoice');
+        console.log(user);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found!' });
@@ -59,7 +60,7 @@ module.exports.Login = async (req, res, next) => {
         if (user.UserChoice.Country === null || user.UserChoice.City === null) {
             res.status(201).json({ message: "Login Successfull", success: true, appSetUp: false });
         } else {
-            res.status(201).json({message: "Login Successfull", success: true, appSetUp: true});
+            res.status(201).json({message: "Login Successfull", success: true, appSetUp: true, appSettings: user.UserChoice});
         }
         
         next();

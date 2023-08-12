@@ -56,7 +56,7 @@ const UserSettings = () => {
 
             const formData = await axios.post("http://localhost:8000/home", { ...userChoice, user: username }, { withCredentials: true });
 
-            const { message, success, user } = formData.data;
+            const { success, user } = formData.data;
 
             if (success) {
                 setTimeout(() => {
@@ -64,7 +64,6 @@ const UserSettings = () => {
                 }, 1000);
             }
 
-            console.log(user);
         } catch (error) {
             console.log(error);
         }
