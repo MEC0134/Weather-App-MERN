@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import '../css/VerifiedUser.css';
+import '../css/PrivateRoutes.css';
 
 
 const UserSettings = () => {
@@ -35,7 +35,7 @@ const UserSettings = () => {
                 navigate("/login");
             }
 
-            const { data } = await axios.post("http://localhost:8000/choice",
+            const { data } = await axios.get("http://localhost:8000/choice",
                 {},
                 { withCredentials: true });
 

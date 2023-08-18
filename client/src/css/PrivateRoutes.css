@@ -8,6 +8,7 @@
 #home-container {
     height: 85vh;
     background-color: azure;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
@@ -50,7 +51,12 @@
     border: 1px solid #3498db;
     border-radius: 40%;
     transition: background-color 0.3s ease;
-    width: 180px;
+    width: 18%;
     padding: 24px;
     margin: 24px 0 0 32px;
+}
+
+.joke-container > p {
+    line-height: 1rem;
+    font-size: 12px;
 }

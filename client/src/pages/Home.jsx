@@ -1,13 +1,13 @@
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import '../css/VerifiedUser.css';
+import '../css/PrivateRoutes.css';
 import { useState, useEffect } from "react";
 
 const Home = () => {
 
   const [joke, setJoke] = useState("");
-  const [userChoice, setUserChoice] = useState({});
+  const [userChoice, setUser] = useState({});
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
 
@@ -21,18 +21,15 @@ const Home = () => {
       }
 
       try {
-        const { data } = await axios.post("http://localhost:8000/login",
-          {},
-          { withCredentials: true });
 
-        const { success, appSettings } = data;
-        console.log(data);
+        const { data } = await axios.get("http://localhost:8000/user-data", {withCredentials: true});
 
+        const { success, userData, joke } = data;
 
-        // if (success) {
-        //   setJoke(app);
-        //   setUserChoice(user.UserChoice); // Store the user's settings
-        // }
+        if (success) {
+          setUser(userData); // Store the user's settings
+          setJoke(joke); 
+        }
 
       } catch (error) {
         console.log(error);
