@@ -52,7 +52,7 @@ module.exports.GetUserSettings = async (req, res) => {
     res.status(200).json({
       message: "User data retrieved successfully",
       success: true,
-      user: user.username,
+      username: user.username,
       userJoke: usersJoke,
     });
 

@@ -24,10 +24,10 @@ const Home = () => {
 
         const { data } = await axios.get("http://localhost:8000/user-data", {withCredentials: true});
 
-        const { success, userData, userJoke } = data;
+        const { success, username, userJoke } = data;
 
         if (success) {
-          setUser(userData); // Store the user's settings
+          setUser(username); 
           setJoke(userJoke); 
         }
 
@@ -51,6 +51,8 @@ const Home = () => {
 
       <div id="home-container">
 
+        <h4 className="greet-user">Welcome {user}</h4>
+
         <div className="joke-container">
           <p>{joke}</p>
         </div>
@@ -68,4 +70,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;
