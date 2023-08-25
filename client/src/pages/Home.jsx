@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const Home = () => {
 
   const [joke, setJoke] = useState("");
-  const [userChoice, setUser] = useState({});
+  const [user, setUser] = useState({});
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
 
@@ -24,11 +24,11 @@ const Home = () => {
 
         const { data } = await axios.get("http://localhost:8000/user-data", {withCredentials: true});
 
-        const { success, userData, joke } = data;
+        const { success, userData, userJoke } = data;
 
         if (success) {
           setUser(userData); // Store the user's settings
-          setJoke(joke); 
+          setJoke(userJoke); 
         }
 
       } catch (error) {

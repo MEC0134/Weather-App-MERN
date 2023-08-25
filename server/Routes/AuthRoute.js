@@ -3,9 +3,9 @@ const { userVerification } = require("../Middlewares/AuthMiddleware");
 const {GetUserSettings, SetUserSettings} = require("../Controllers/UserController");
 const router = require("express").Router();
 
+router.post("/choice", userVerification);
 router.post("/signup", Signup);
 router.post("/login", Login);
-router.post("/choice", userVerification);
 router.post("/home", SetUserSettings);
 router.get("/user-data", GetUserSettings); 
 

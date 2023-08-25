@@ -20,12 +20,9 @@ module.exports.SetUserSettings = async (req, res, next) => {
 
     res.status(201).json({ message: "User updated", success: true, user: setUserChoice, });
 
-    next();
-
   } catch (error) {
     console.log(error);
   }
-
 }
 
 
@@ -55,12 +52,12 @@ module.exports.GetUserSettings = async (req, res) => {
     res.status(200).json({
       message: "User data retrieved successfully",
       success: true,
-      userData: user.username,
-      joke: usersJoke,
+      user: user.username,
+      userJoke: usersJoke,
     });
 
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Internal server error", success: false });
   }
-};
+}

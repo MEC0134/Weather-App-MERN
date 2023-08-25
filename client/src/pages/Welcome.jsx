@@ -6,7 +6,9 @@ import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
 import '../css/styles.css';
 
+
 function Welcome() {
+
     return (
         <div className="welcome-container">
             <div className="welcome-icons">

@@ -1,6 +1,6 @@
 // private page
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
@@ -20,6 +20,7 @@ const UserSettings = () => {
     });
 
     const handleInput = (event) => {
+        
         const { name, value } = event.target;
         setUserChoice(({
             ...userChoice,
@@ -27,26 +28,28 @@ const UserSettings = () => {
         }));
     };
 
-    useEffect(() => {
+    const verifyCookie = useMemo(() => async () => {
+        if (!cookies.token) {
+            navigate("/login");
+        }
 
-        // not authorized
-        const verifyCookie = async () => {
-            if (!cookies.token) {
-                navigate("/login");
-            }
+        const { data } = await axios.post(
+            "http://localhost:8000/choice",
+            {},
+            { withCredentials: true }
+        );
 
-            const { data } = await axios.get("http://localhost:8000/choice",
-                {},
-                { withCredentials: true });
+        const { status, user } = data;
+        setUsername(user);
+        console.log(data);
 
-            const { status, user } = data;
-            setUsername(user);
-
-            return status ? ' ' : (removeCookie("token"), navigate("/login"));
-        };
-
-        verifyCookie();
+        return status ? ' ' : (removeCookie("token"), navigate("/login"));
     }, [cookies, navigate, removeCookie]);
+
+    useEffect(() => {
+        verifyCookie();
+
+    }, [verifyCookie]);
 
 
     const handleSubmit = async (event) => {

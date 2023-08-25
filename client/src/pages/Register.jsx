@@ -48,7 +48,7 @@ const Register = () => {
         console.log("Response data:", data); // Log the response data for debugging
 
         const { success, message } = data;
-        console.log("Success Value: ", success);
+        console.log(data);
 
         if (success) {
           handleSuccess(message);
