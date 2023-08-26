@@ -1,13 +1,13 @@
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import '../css/PrivateRoutes.css';
 import { useState, useEffect } from "react";
+import ClearSky from "./weatherTypes/ClearSky";
+import '../css/PrivateRoutes.css';
 
 const Home = () => {
 
   const [joke, setJoke] = useState("");
-  const [user, setUser] = useState({});
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
 
@@ -22,13 +22,15 @@ const Home = () => {
 
       try {
 
-        const { data } = await axios.get("http://localhost:8000/user-data", {withCredentials: true});
+        const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
 
         const { success, username, userJoke } = data;
 
+        console.log(data);
+
+
         if (success) {
-          setUser(username); 
-          setJoke(userJoke); 
+          setJoke(userJoke);
         }
 
       } catch (error) {
@@ -51,17 +53,23 @@ const Home = () => {
 
       <div id="home-container">
 
-        <h4 className="greet-user">Welcome {user}</h4>
+          <div id="home-container">
 
-        <div className="joke-container">
-          <p>{joke}</p>
-        </div>
+            <div className="overlay-elements">
+              <div className="joke-container">
+                <p>{joke}</p>
+              </div>
+              <h3 className="home-title">City, Country</h3>
+              <div className="logout">
+                <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
+              </div>
+            </div>
 
+            <div className="weather-container">
+              <ClearSky />
+            </div>
 
-        <div className="logout">
-          <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
-        </div>
-
+          </div>
 
       </div>
 

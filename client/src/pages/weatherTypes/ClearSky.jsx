@@ -1,17 +1,17 @@
 import React from "react";
-
+import '../../css/weatherTypes.css'
 
 const ClearSky = () => {
 
 
 
 
-    return (
-        <>
-          <h1></h1>  
-        </>
-    )
+  return (
+    <div id="clear-sky">
     
+    </div>
+  )
+
 }
 
 

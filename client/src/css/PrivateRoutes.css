@@ -4,13 +4,37 @@
     text-align: center;
 }
 
-
 #home-container {
     height: 85vh;
     position: relative;
     background-color: azure;
     font-family: 'Courier New', Courier, monospace;
 }
+
+.overlay-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+
+.overlay-elements > .home-title {
+    display: block; 
+    margin: 0 auto;
+    padding: 14px;
+    font-size: 24px;
+    font-weight: 550;
+
+}
+
+.weather-container {
+    position: relative;
+    z-index: 1;
+}
+
+
 
 
 .choice-title {
@@ -27,38 +51,22 @@
 
 /* HOME */
 
-
-.greet-user {
-    display: inline;
-    float: left;
-    /* transition: background-color 0.3s ease; */
-    width: 21%;
-    padding: 14px;
-    margin: 2px 10px 0 0;
-}
-
-/* Joke Container */
-
 .joke-container {
     display: inline;
     float: right;
-    /* border: 1px solid #d17300; */
-    /* border-radius: 40%; */
-    /* transition: background-color 0.3s ease; */
     width: 18%;
-    padding: 18px;
-    margin: 0 10px 0 0;
+    padding: 14px;
+    margin: 12px 10px 0 0;
 }
 
-.joke-container > p {
+.joke-container>p {
     line-height: 1rem;
     font-size: 14px;
 }
 
 .btn-logout {
-    display: inline-block;
-    position: absolute;
-    top: 470px;
+    position: fixed;
+    bottom: 26px; 
     left: 10px;
     border: none;
     border-radius: 50%;
@@ -69,8 +77,34 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .btn-logout:hover {
+}
+
+.btn-logout:hover {
     background-color: #d17300;
-  }
+}
+
+
+
+@media (max-width: 1200px) {
+    .btn-logout {
+        bottom: 82px; 
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .btn-logout {
+        bottom: 58px
+    }
+}
+
+
+@media (max-width: 500px) { 
+
+    .btn-logout {
+        bottom: 27px
+    }
+}
+
+

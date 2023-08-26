@@ -5,7 +5,9 @@ const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute"); 
+const {getWeather} = require('./util/getWeather');
 
+console.log(getWeather('adana')); 
 
 mongoose
     .connect(process.env.MONGO_URL, {
