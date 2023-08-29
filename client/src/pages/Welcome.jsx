@@ -4,7 +4,6 @@ import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import WbCloudyOutlined from '@mui/icons-material/WbCloudyOutlined';
 import ThunderstormOutlinedIcon from '@mui/icons-material/ThunderstormOutlined';
 import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
-import '../css/styles.css';
 
 
 function Welcome() {

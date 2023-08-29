@@ -49,7 +49,7 @@ header h1 {
     align-items: center;
     text-align: center;
     padding: 0 0 24px 0;
-    height: 90vh;
+    height: 85vh;
 }
 
 .welcome-icons {
@@ -160,20 +160,5 @@ footer > p {
     margin-top: 10px;
 }
 
-.error {
-    display: inline-block;
-    padding: 2px 10px;
-    background-color: #d17300;
-    color: #fff;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-top: 20px;
-}
 
-/* Media Queries */
 
-@media(max-width: 900px) {
-    .Oauth-seperator {
-        display: none;
-    }
-}

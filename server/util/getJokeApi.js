@@ -7,7 +7,6 @@ module.exports.getJoke = async (jokeCategory) => {
         return response.data.joke;
     } catch (error) {
         console.log(error);
-
     }
 }
 

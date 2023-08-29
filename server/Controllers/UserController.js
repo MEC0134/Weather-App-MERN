@@ -1,7 +1,7 @@
 const User = require("../Models/UserModel");
 const jwt = require("jsonwebtoken");
 const { getJoke } = require('../util/getJokeApi');
-
+const { getWeather } = require('../util/getWeather');
 
 module.exports.SetUserSettings = async (req, res, next) => {
 
@@ -16,7 +16,6 @@ module.exports.SetUserSettings = async (req, res, next) => {
     if (!setUserChoice) {
       return res.status(500).json({ message: "Could not update document!", success: false });
     }
-
 
     res.status(201).json({ message: "User updated", success: true, user: setUserChoice, });
 
@@ -49,11 +48,20 @@ module.exports.GetUserSettings = async (req, res) => {
 
     const usersJoke = await getJoke(user.UserChoice.JokeCategory);
 
+    const userWeather = await getWeather(user.UserChoice.City);
+    console.log(userWeather.list[0].main.temp);
+
+    // const weatherContainer = {
+    //   temperature: userWeather.list.main.temp,  
+    //   description: userWeather.list.weather[0].description,
+    // };
+
     res.status(200).json({
       message: "User data retrieved successfully",
       success: true,
-      username: user.username,
+      user: user,
       userJoke: usersJoke,
+      weather: weatherContainer
     });
 
   } catch (error) {

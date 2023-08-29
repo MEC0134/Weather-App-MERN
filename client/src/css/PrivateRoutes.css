@@ -19,28 +19,30 @@
     z-index: 2;
 }
 
-
-.overlay-elements > .home-title {
-    display: block; 
+.weather-container {
+    display: inline-block;
     margin: 0 auto;
     padding: 14px;
     font-size: 24px;
     font-weight: 550;
-
 }
 
-.weather-container {
+.weather-container>p {
+    font-size: 16px;
+    margin-top: 18px;
+    line-height: 0.35;
+}
+
+.weather-component {
     position: relative;
     z-index: 1;
 }
-
-
-
 
 .choice-title {
     font-size: 2.3rem;
     padding: 12px;
 }
+
 
 /* Form */
 
@@ -61,17 +63,17 @@
 
 .joke-container>p {
     line-height: 1rem;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .btn-logout {
     position: fixed;
-    bottom: 26px; 
+    bottom: -16px;
     left: 10px;
     border: none;
     border-radius: 50%;
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #d17300;
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -80,31 +82,27 @@
 }
 
 .btn-logout:hover {
-    background-color: #d17300;
+    background-color: #040D12;
 }
 
 
+/* Media Queries */
+@media(max-width: 1000px) {
 
-@media (max-width: 1200px) {
-    .btn-logout {
-        bottom: 82px; 
+    .overlay-elements {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
     }
-}
 
-
-@media (max-width: 800px) {
-
-    .btn-logout {
-        bottom: 58px
+    .joke-container {
+        order: 1;
     }
-}
-
-
-@media (max-width: 500px) { 
 
     .btn-logout {
-        bottom: 27px
+        font-size: 14px;
+        width: 88px;
     }
 }
-
-

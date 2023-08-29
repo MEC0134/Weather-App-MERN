@@ -1,6 +1,24 @@
 /* Clear Sky */
 
 #clear-sky {
-    background-color: #337CCF;
-    height: 85vh;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1E90FF 15%, #87CEEB 75%);
+}
+
+
+.sun {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+
+@media(max-width: 1000px) {
+
+    .sun {
+        width: 150px;
+        height: 150px;
+        margin-left: -22px;
+        float: left;
+    }
 }
