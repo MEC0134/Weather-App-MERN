@@ -7,11 +7,26 @@ import '../css/PrivateRoutes.css';
 
 const Home = () => {
 
+
+  function getTime() {
+    var d = new Date();
+    var c_hour = d.getHours();
+    var c_min = d.getMinutes();
+    var t = c_hour + ":" + c_min;
+    return t;
+  }
+
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
     userName: "",
     userCity: "",
     userCuntry: ""
+  });
+
+
+  // CONTINUE HERE 
+  const [forecast, setForecast] = useState({
+    
   });
 
   const [weather, setWeather] = useState({
@@ -40,12 +55,13 @@ const Home = () => {
 
         const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
 
-        const { success, user, userJoke, weather } = data;
+        const { success, user, userJoke, weather, forecast } = data;
 
         if (success) {
           setJoke(userJoke);
           setUser({ userName: user.username, userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
           setWeather({ temperature: weather.temperature, description: weather.description });
+
         }
 
       } catch (error) {
@@ -73,11 +89,26 @@ const Home = () => {
             <h3 className="home-title">{capitalizeFirstLetter(user.userCity)}, {capitalizeFirstLetter(user.userCuntry)}</h3>
             <p>{Math.round(weather.temperature)}&deg;C</p>
             <p>{capitalizeFirstLetter(weather.description)}</p>
+            <p>{getTime()}</p>
           </div>
 
           <div className="joke-container">
             <p>{joke}</p>
           </div>
+
+          <div className="forecast-container">
+            {Object.keys(forecast).map(dayKey =>
+              <div key={dayKey} className="forecast-card">
+                <p className="forecast-day">{dayKey}</p>
+                <img className="forecast-icon"></img>
+                <p className="forecast-minmax">
+                  Min {forecast[dayKey].Min}°C, Max {forecast[dayKey].Max}°C
+                </p>
+              </div>
+            )}
+
+          </div>
+
           <div className="logout">
             <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
           </div>

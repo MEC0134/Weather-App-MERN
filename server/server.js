@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
-const authRoute = require("./Routes/AuthRoute"); 
+const authRoute = require("./Routes/AuthRoute");
 
 mongoose
     .connect(process.env.MONGO_URL, {
@@ -15,10 +15,10 @@ mongoose
     .catch((err) => console.error(err));
 
 app.use(cors({
-        origin: ["http://localhost:3000"],
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
-    })
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+})
 );
 
 
