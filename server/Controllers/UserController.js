@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { getJoke } = require('../util/getJokeApi');
 const { getWeather } = require('../util/getWeather');
 
+
 module.exports.SetUserSettings = async (req, res, next) => {
 
   try {
@@ -50,44 +51,12 @@ module.exports.GetUserSettings = async (req, res) => {
 
     const userWeather = await getWeather(user.UserChoice.City);
 
-
-    const weatherContainer = {
-      temperature: userWeather.list[0].main.temp,
-      min: userWeather.list[0].main.temp_min,
-      min: userWeather.list[0].main.temp_max,
-      description: userWeather.list[0].weather[0].description,
-    };
-
-    const forecast = {
-      "Day-1": {
-        "Min": userWeather.list[9].main.temp_min,
-        "Max": userWeather.list[9].main.temp_max,
-        "Icon": userWeather.list[9].weather.icon,
-      },
-      "Day-2": {
-        "Min": userWeather.list[19].main.temp_min,
-        "Max": userWeather.list[19].main.temp_max,
-        "Icon": userWeather.list[19].weather.icon,
-      },
-      "Day-3": {
-        "Min": userWeather.list[29].main.temp_min,
-        "Max": userWeather.list[29].main.temp_max,
-        "Icon": userWeather.list[29].weather.icon,
-      },
-      "Day-4": {
-        "Min": userWeather.list[39].main.temp_min,
-        "Max": userWeather.list[39].main.temp_max,
-        "Icon": userWeather.list[39].weather.icon,
-      }
-    }
-
     res.status(200).json({
       message: "User data retrieved successfully",
       success: true,
       user: user,
       userJoke: usersJoke,
-      weather: weatherContainer,
-      weatherForecast: forecast
+      weatherForecast: userWeather
     });
 
   } catch (error) {

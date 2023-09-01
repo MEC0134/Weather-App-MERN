@@ -7,15 +7,6 @@ import '../css/PrivateRoutes.css';
 
 const Home = () => {
 
-
-  function getTime() {
-    var d = new Date();
-    var c_hour = d.getHours();
-    var c_min = d.getMinutes();
-    var t = c_hour + ":" + c_min;
-    return t;
-  }
-
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
     userName: "",
@@ -23,13 +14,13 @@ const Home = () => {
     userCuntry: ""
   });
 
-
-  // CONTINUE HERE 
   const [forecast, setForecast] = useState({
-    
+    Min: "",
+    Max: "",
+    Icon: ""
   });
 
-  const [weather, setWeather] = useState({
+  const [weatherToday, setWeatherToday] = useState({
     temperature: "",
     description: ""
   });
@@ -55,13 +46,13 @@ const Home = () => {
 
         const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
 
-        const { success, user, userJoke, weather, forecast } = data;
+        const { success, user, userJoke, weatherForecast } = data;
 
         if (success) {
           setJoke(userJoke);
           setUser({ userName: user.username, userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
-          setWeather({ temperature: weather.temperature, description: weather.description });
-
+          setWeatherToday({ temperature: weatherForecast.DayOne.temperature, description: weatherForecast.DayOne.description });
+          setForecast({ ...weatherForecast });
         }
 
       } catch (error) {
@@ -87,25 +78,24 @@ const Home = () => {
 
           <div className="weather-container">
             <h3 className="home-title">{capitalizeFirstLetter(user.userCity)}, {capitalizeFirstLetter(user.userCuntry)}</h3>
-            <p>{Math.round(weather.temperature)}&deg;C</p>
-            <p>{capitalizeFirstLetter(weather.description)}</p>
-            <p>{getTime()}</p>
+            <p>{Math.round(weatherToday.temperature)}&deg;C</p>
+            <p>{capitalizeFirstLetter(weatherToday.description)}</p>
           </div>
 
           <div className="joke-container">
             <p>{joke}</p>
           </div>
-
           <div className="forecast-container">
-            {Object.keys(forecast).map(dayKey =>
-              <div key={dayKey} className="forecast-card">
-                <p className="forecast-day">{dayKey}</p>
-                <img className="forecast-icon"></img>
-                <p className="forecast-minmax">
-                  Min {forecast[dayKey].Min}°C, Max {forecast[dayKey].Max}°C
-                </p>
+            {Object.keys(forecast).map((day, index) => (
+              <div key={index} className="forecast-card">
+                <p className="forecast-day">{day}</p>
+                <img
+                  className="forecast-icon"
+                  src={"https://openweathermap.org/img/wn/" + forecast[day].Icon + ".png"}
+                />
+                <p className="forecast-minmax">{forecast[day].Min}&#8451;, {forecast[day].Max}&#8451;</p>
               </div>
-            )}
+            ))}
 
           </div>
 
