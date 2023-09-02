@@ -7,6 +7,15 @@ import '../css/PrivateRoutes.css';
 
 const Home = () => {
 
+
+  const getToday = () => {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const today = new Date().getDay();
+    return daysOfWeek[today];
+  };
+
+  const today = getToday();
+  
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
     userName: "",
@@ -51,8 +60,14 @@ const Home = () => {
         if (success) {
           setJoke(userJoke);
           setUser({ userName: user.username, userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
-          setWeatherToday({ temperature: weatherForecast.DayOne.temperature, description: weatherForecast.DayOne.description });
+          const todayWeather = weatherForecast[today];
+          setWeatherToday({
+            temperature: todayWeather.temperature,
+            description: todayWeather.description,
+          });
+
           setForecast({ ...weatherForecast });
+          console.log(weatherForecast);
         }
 
       } catch (error) {

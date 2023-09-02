@@ -7,6 +7,7 @@ const { getWeather } = require('../util/getWeather');
 module.exports.SetUserSettings = async (req, res, next) => {
 
   try {
+
     const { country, city, category, user } = req.body;
 
     const setUserChoice = await User.findOneAndUpdate(
@@ -18,7 +19,7 @@ module.exports.SetUserSettings = async (req, res, next) => {
       return res.status(500).json({ message: "Could not update document!", success: false });
     }
 
-    res.status(201).json({ message: "User updated", success: true, user: setUserChoice, });
+    res.status(201).json({ message: "User updated", success: true, user: setUserChoice });
 
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {getDaysOfWeek} = require("../util/getDays");
+const { getDaysOfWeek } = require("../util/getDays");
 
 
 module.exports.getWeather = async (city) => {

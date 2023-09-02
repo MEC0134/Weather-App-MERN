@@ -6,6 +6,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 
+
 mongoose
     .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,

@@ -1,15 +1,23 @@
-/* Clear Sky */
-
-#clear-sky {
-    height: 100vh;
-    background: linear-gradient(to bottom, #1E90FF 15%, #87CEEB 75%);
-}
-
 
 .sun {
     width: 250px;
     height: 250px;
     margin: 0 auto;
+}
+
+
+.cloudy {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+
+/* Clear Sky */
+
+#clear-sky {
+    height: 100vh;
+    background: linear-gradient(to bottom, #1E90FF 15%, #87CEEB 75%);
 }
 
 
