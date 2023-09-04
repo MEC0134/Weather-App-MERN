@@ -1,7 +1,6 @@
 import React from "react";
 import Lottie from "lottie-react";
 import Sun from "../../animations/sun.json";
-import Cloudy from "../../animations/cloudy.json";
 import '../../css/weatherTypes.css';
 
 

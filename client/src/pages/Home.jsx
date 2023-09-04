@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ClearSky from "./weatherTypes/ClearSky";
+import PartlyCloudy from "./weatherTypes/PartlyClouds";
+import Rain from "./weatherTypes/Rain";
+import ThunderStorm from "./weatherTypes/Thunder";
+import Snow from "./weatherTypes/Snow";
+import Fog from "./weatherTypes/Fogy";
 import '../css/PrivateRoutes.css';
 
 const Home = () => {
@@ -67,7 +72,6 @@ const Home = () => {
           });
 
           setForecast({ ...weatherForecast });
-          console.log(weatherForecast);
         }
 
       } catch (error) {
@@ -121,7 +125,7 @@ const Home = () => {
         </div>
 
         <div className="weather-component">
-          <ClearSky />
+            <Fog/>
         </div>
 
 

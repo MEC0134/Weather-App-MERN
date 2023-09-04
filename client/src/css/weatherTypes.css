@@ -1,12 +1,9 @@
+/* Main Icons */
 
-.sun {
-    width: 250px;
-    height: 250px;
-    margin: 0 auto;
-}
-
-
-.cloudy {
+.sun,
+.cloudy,
+.thunder,
+.fog-icon {
     width: 250px;
     height: 250px;
     margin: 0 auto;
@@ -20,6 +17,57 @@
     background: linear-gradient(to bottom, #1E90FF 15%, #87CEEB 75%);
 }
 
+
+/* Partly Cloudy */
+
+#partly-cloudy {
+    height: 100vh;
+    background: linear-gradient(to bottom, #1E90FF 15%, #D8D9DA 75%);
+}
+
+/* Rain */
+
+#rainy {
+    height: 100vh;
+    background-color: #B0C4DE;
+}
+
+
+/* Thunder */
+
+#thunder-storm {
+    height: 100vh;
+    background-color: #D8D8D8;
+}
+
+.thunder-rain {
+    position: absolute;
+    top: 0;
+    z-index: 3;
+}
+
+/* Snow */
+
+#snow {
+    height: 100vh;
+    background-color: #C0C0C0;
+}
+
+/* Fog */
+
+#fog-container {
+    height: 100vh;
+    background: linear-gradient(to right, #B2B2B2, #7F8487, #ECECEC);
+}
+
+
+.foggy-background {
+
+}
+
+
+
+/* Media Queries */
 
 @media(max-width: 1000px) {
 
