@@ -57,13 +57,9 @@
 
 #fog-container {
     height: 100vh;
-    background: linear-gradient(to right, #B2B2B2, #7F8487, #ECECEC);
+    background: linear-gradient(to right, #B2B2B2, #FFF6E0, #ECECEC);
 }
 
-
-.foggy-background {
-
-}
 
 
 

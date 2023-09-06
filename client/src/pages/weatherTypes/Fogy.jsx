@@ -11,7 +11,7 @@ const Fog = () => {
 
             <Lottie className="fog-icon" loop={true} animationData={Fogy} />
             <div className="foggy-background">
-
+                
             </div>
         </div>
     )

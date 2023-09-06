@@ -2,16 +2,10 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ClearSky from "./weatherTypes/ClearSky";
-import PartlyCloudy from "./weatherTypes/PartlyClouds";
-import Rain from "./weatherTypes/Rain";
-import ThunderStorm from "./weatherTypes/Thunder";
-import Snow from "./weatherTypes/Snow";
-import Fog from "./weatherTypes/Fogy";
+import WeatherDisplay from "./WeatherDisplay";
 import '../css/PrivateRoutes.css';
 
 const Home = () => {
-
 
   const getToday = () => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -20,7 +14,8 @@ const Home = () => {
   };
 
   const today = getToday();
-  
+
+  const [weatherType, setWeatherType] = useState();
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
     userName: "",
@@ -70,7 +65,6 @@ const Home = () => {
             temperature: todayWeather.temperature,
             description: todayWeather.description,
           });
-
           setForecast({ ...weatherForecast });
         }
 
@@ -125,7 +119,7 @@ const Home = () => {
         </div>
 
         <div className="weather-component">
-            <Fog/>
+          <WeatherDisplay description={weatherToday.description} />
         </div>
 
 
