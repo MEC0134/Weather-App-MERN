@@ -13,6 +13,8 @@ function WeatherDisplay(props) {
             return <ClearSky />;
         case 'rain':
             return <Rain />;
+        case'light rain':
+            return <Rain />;
         case 'shower rain':
             return <Rain />;
         case 'thunderstorm':

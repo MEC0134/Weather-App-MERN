@@ -1,49 +1,42 @@
 const axios = require('axios');
 const { getDaysOfWeek } = require("../util/getDays");
-
+const NodeCache = require("node-cache");
+const cache = new NodeCache({ stdTTL: 1800 });
 
 module.exports.getWeather = async (city) => {
 
-    try {
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=50&units=metric&appid=${process.env.WEATHER_APIKEY}`);
-        const daysOfWeek = getDaysOfWeek();
+    const cachedData = cache.get(city);
 
-        const forecast = {
-            [daysOfWeek[0]]: {
-                "temperature": response.data.list[0].main.temp,
-                "Min": response.data.list[0].main.temp_min,
-                "Max": response.data.list[0].main.temp_max,
-                "Icon": response.data.list[0].weather[0].icon,
-                "description": response.data.list[0].weather[0].description,
-            },
-            [daysOfWeek[1]]: {
-                "Min": response.data.list[9].main.temp_min,
-                "Max": response.data.list[9].main.temp_max,
-                "Icon": response.data.list[9].weather[0].icon,
-            },
-            [daysOfWeek[2]]: {
-                "Min": response.data.list[19].main.temp_min,
-                "Max": response.data.list[19].main.temp_max,
-                "Icon": response.data.list[19].weather[0].icon,
-            },
-            [daysOfWeek[3]]: {
-                "Min": response.data.list[29].main.temp_min,
-                "Max": response.data.list[29].main.temp_max,
-                "Icon": response.data.list[29].weather[0].icon,
-            },
-            [daysOfWeek[4]]: {
-                "Min": response.data.list[39].main.temp_min,
-                "Max": response.data.list[39].main.temp_max,
-                "Icon": response.data.list[39].weather[0].icon,
+    if(cachedData) {
+        
+        return cachedData;
+    } else {
+
+        try {
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${process.env.WEATHER_APIKEY}`);
+            const daysOfWeek = getDaysOfWeek();
+            const forecast = {};
+
+            cache.set(city, response.data);
+    
+            for (let i = 0; i < 5; i++) {
+                const startIndex = i * 8;
+                const endIndex = startIndex + 8;
+                const day = daysOfWeek[i];
+    
+                forecast[day] = {
+                    "temperature": response.data.list[startIndex].main.temp,
+                    "Min": response.data.list.slice(startIndex, endIndex).reduce((min, item) => Math.min(min, item.main.temp_min), Infinity),
+                    "Max": response.data.list.slice(startIndex, endIndex).reduce((max, item) => Math.max(max, item.main.temp_max), -Infinity),
+                    "Icon": response.data.list[startIndex].weather[0].icon,
+                    "description": response.data.list[startIndex].weather[0].description,
+                };
             }
+    
+            return forecast;
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
-
-        return forecast;
-
-    } catch (error) {
-        console.log(error);
     }
-
 }
-
-

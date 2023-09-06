@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import WeatherDisplay from "./WeatherDisplay";
 import '../css/PrivateRoutes.css';
 
+
 const Home = () => {
 
   const getToday = () => {
@@ -15,7 +16,6 @@ const Home = () => {
 
   const today = getToday();
 
-  const [weatherType, setWeatherType] = useState();
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
     userName: "",
@@ -61,6 +61,7 @@ const Home = () => {
           setJoke(userJoke);
           setUser({ userName: user.username, userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
           const todayWeather = weatherForecast[today];
+
           setWeatherToday({
             temperature: todayWeather.temperature,
             description: todayWeather.description,
@@ -119,7 +120,9 @@ const Home = () => {
         </div>
 
         <div className="weather-component">
+
           <WeatherDisplay description={weatherToday.description} />
+
         </div>
 
 
