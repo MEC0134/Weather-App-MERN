@@ -1,8 +1,10 @@
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate, redirect } from "react-router-dom";
+import axios from "axios";
 import WeatherDisplay from "./WeatherDisplay";
+import ForecastCard from "./components/ForecastCards";
+import WeatherInfoCard from "./components/WeatherInfoCard";
 import '../css/PrivateRoutes.css';
 
 
@@ -18,10 +20,11 @@ const Home = () => {
 
   const [joke, setJoke] = useState("");
   const [user, setUser] = useState({
-    userName: "",
     userCity: "",
-    userCuntry: ""
+    userCountry: ""
   });
+
+  const { userCity, userCountry } = user;
 
   const [forecast, setForecast] = useState({
     Min: "",
@@ -37,18 +40,13 @@ const Home = () => {
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
 
-  const capitalizeFirstLetter = (word) => {
-    const capitalized = word.charAt(0).toUpperCase() + word.slice(1);
-    return capitalized;
-  }
-
 
   useEffect(() => {
 
     const fetchData = async () => {
 
       if (!cookies.token) {
-        navigate("/login");
+        return <redirect to="/login" />;
       }
 
       try {
@@ -56,12 +54,11 @@ const Home = () => {
         const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
 
         const { success, user, userJoke, weatherForecast } = data;
+        const todayWeather = weatherForecast[today];
 
         if (success) {
           setJoke(userJoke);
-          setUser({ userName: user.username, userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
-          const todayWeather = weatherForecast[today];
-
+          setUser({ userCity: user.UserChoice.City, userCuntry: user.UserChoice.Country });
           setWeatherToday({
             temperature: todayWeather.temperature,
             description: todayWeather.description,
@@ -89,11 +86,14 @@ const Home = () => {
       <div id="home-container">
 
         <div className="overlay-elements">
-
           <div className="weather-container">
-            <h3 className="home-title">{capitalizeFirstLetter(user.userCity)}, {capitalizeFirstLetter(user.userCuntry)}</h3>
-            <p>{Math.round(weatherToday.temperature)}&deg;C</p>
-            <p>{capitalizeFirstLetter(weatherToday.description)}</p>
+
+            <WeatherInfoCard
+              userCity={userCity}
+              userCountry={userCountry}
+              temperature={weatherToday.temperature}
+              description={weatherToday.description}
+            />
           </div>
 
           <div className="joke-container">
@@ -101,14 +101,13 @@ const Home = () => {
           </div>
           <div className="forecast-container">
             {Object.keys(forecast).map((day, index) => (
-              <div key={index} className="forecast-card">
-                <p className="forecast-day">{day}</p>
-                <img
-                  className="forecast-icon"
-                  src={"https://openweathermap.org/img/wn/" + forecast[day].Icon + ".png"}
-                />
-                <p className="forecast-minmax">{forecast[day].Min}&#8451;, {forecast[day].Max}&#8451;</p>
-              </div>
+              <ForecastCard
+                key={index}
+                day={day}
+                icon={forecast[day].Icon}
+                min={forecast[day].Min}
+                max={forecast[day].Max}
+              />
             ))}
 
           </div>

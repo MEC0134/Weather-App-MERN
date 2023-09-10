@@ -2,10 +2,6 @@ const User = require("../Models/UserModel");
 const jwt = require("jsonwebtoken");
 const { getJoke } = require('../util/getJokeApi');
 const { getWeather } = require('../util/getWeather');
-const NodeCache = require("node-cache"); 
-
-
-const weatherCache = new NodeCache({ stdTTL: 1800 }); 
 
 
 module.exports.SetUserSettings = async (req, res, next) => {
@@ -54,22 +50,7 @@ module.exports.GetUserSettings = async (req, res) => {
 
     const usersJoke = await getJoke(user.UserChoice.JokeCategory);
 
-    const weatherCacheKey = user.UserChoice.City;
-    const cachedWeatherData = weatherCache.get(weatherCacheKey);
-
-    let userWeather;
-
-    if (cachedWeatherData) {
-      userWeather = cachedWeatherData;
-    } else {
-      // Weather data not in cache, fetch from the 3rd party API
-      userWeather = await getWeather(user.UserChoice.City);
-
-      // Store weather data in cache
-      weatherCache.set(weatherCacheKey, userWeather);
-    }
-
-    // const userWeather = await getWeather(user.UserChoice.City);
+    const userWeather = await getWeather(user.UserChoice.City);
 
     res.status(200).json({
       message: "User data retrieved successfully",
