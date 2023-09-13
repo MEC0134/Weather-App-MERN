@@ -4,6 +4,7 @@ import Rain from "./weatherTypes/Rain";
 import ThunderStorm from "./weatherTypes/Thunder";
 import Snow from "./weatherTypes/Snow";
 import Fog from "./weatherTypes/Fogy";
+import OvercastClouds from "./weatherTypes/OvercastClouds";
 
 
 function WeatherDisplay(props) {
@@ -13,18 +14,20 @@ function WeatherDisplay(props) {
             return <ClearSky />;
         case 'rain':
             return <Rain />;
-        case'light rain':
+        case 'light rain':
             return <Rain />;
         case 'shower rain':
             return <Rain />;
         case 'thunderstorm':
             return <ThunderStorm />;
+        case 'overcast clouds':
+            return <OvercastClouds />;
         case 'few clouds':
             return <PartlyCloudy />;
         case 'broken clouds':
-            return <PartlyCloudy />;
+            return <OvercastClouds />;
         case 'scattered clouds':
-            return <PartlyCloudy />
+            return <PartlyCloudy />;
         case 'snow':
             return <Snow />;
         case 'mist':

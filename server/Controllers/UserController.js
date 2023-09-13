@@ -28,7 +28,6 @@ module.exports.SetUserSettings = async (req, res, next) => {
 
 
 
-
 module.exports.GetUserSettings = async (req, res) => {
 
   try {

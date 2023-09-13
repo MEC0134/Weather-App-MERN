@@ -6,7 +6,7 @@ const ForecastCard = (props) => {
 
     return (
         <>
-            <div key={props.key} className="forecast-card">
+            <div className="forecast-card">
                 <p className="forecast-day">{props.day}</p>
                 <img
                     className="forecast-icon"

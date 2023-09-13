@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import WeatherDisplay from "./WeatherDisplay";
 import ForecastCard from "./components/ForecastCards";
 import WeatherInfoCard from "./components/WeatherInfoCard";
+import LoadingSpinner from "./components/LoadingSpinner";
 import '../css/PrivateRoutes.css';
-
 
 const Home = () => {
 
@@ -17,14 +17,12 @@ const Home = () => {
   };
 
   const today = getToday();
-
+  const [loading, setLoading] = useState(true);
   const [joke, setJoke] = useState("");
+
   const [user, setUser] = useState({
     userCity: "",
-    userCountry: ""
   });
-
-  const { userCity, userCountry } = user;
 
   const [forecast, setForecast] = useState({
     Min: "",
@@ -42,17 +40,14 @@ const Home = () => {
 
 
   useEffect(() => {
-
     const fetchData = async () => {
-
       if (!cookies.token) {
-        return <redirect to="/login" />;
+        navigate("/login");
       }
 
       try {
 
         const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
-
         const { success, user, userJoke, weatherForecast } = data;
         const todayWeather = weatherForecast[today];
 
@@ -64,15 +59,18 @@ const Home = () => {
             description: todayWeather.description,
           });
           setForecast({ ...weatherForecast });
+          setLoading(false);
         }
 
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [cookies, navigate]);
+
+  }, [cookies, navigate, today]);
 
 
   const Logout = () => {
@@ -86,30 +84,36 @@ const Home = () => {
       <div id="home-container">
 
         <div className="overlay-elements">
-          <div className="weather-container">
 
-            <WeatherInfoCard
-              userCity={userCity}
-              userCountry={userCountry}
-              temperature={weatherToday.temperature}
-              description={weatherToday.description}
-            />
+          <div className="weather-container">
+            {loading ? (
+              ''
+            ) : (
+              <WeatherInfoCard
+                city={user.userCity}
+                temperature={weatherToday.temperature}
+                description={weatherToday.description}
+              />
+            )}
           </div>
 
           <div className="joke-container">
             <p>{joke}</p>
           </div>
           <div className="forecast-container">
-            {Object.keys(forecast).map((day, index) => (
-              <ForecastCard
-                key={index}
-                day={day}
-                icon={forecast[day].Icon}
-                min={forecast[day].Min}
-                max={forecast[day].Max}
-              />
-            ))}
-
+            {loading ? (
+              ''
+            ) : (
+              Object.keys(forecast).map((day, index) => (
+                <ForecastCard
+                  key={index}
+                  day={day}
+                  icon={forecast[day].Icon}
+                  min={forecast[day].Min}
+                  max={forecast[day].Max}
+                />
+              ))
+            )}
           </div>
 
           <div className="logout">
@@ -119,9 +123,11 @@ const Home = () => {
         </div>
 
         <div className="weather-component">
-
-          <WeatherDisplay description={weatherToday.description} />
-
+          {loading ? (
+            <LoadingSpinner /> 
+          ) : (
+            <WeatherDisplay description={weatherToday.description} />
+          )}
         </div>
 
 

@@ -112,6 +112,15 @@
     background-color: #040D12;
 }
 
+/* Loading Spinner  */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: #d17300;
+  }
+  
 
 /* Media Queries */
 @media(max-width: 1000px) {
