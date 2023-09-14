@@ -81,7 +81,21 @@
     .overcast-clouds {
         width: 150px;
         height: 150px;
-        margin-left: -22px;
-        float: left;
+        margin-left: 37%;
+    }
+}
+
+
+@media(max-width: 750px) {
+
+    .sun,
+    .cloudy,
+    .thunder,
+    .fog-icon,
+    .overcast-clouds {
+        width: 120px;
+        height: 120px;
+        margin-left: 36%;
+        /* margin-top: 94px; */
     }
 }

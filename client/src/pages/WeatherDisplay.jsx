@@ -25,7 +25,7 @@ function WeatherDisplay(props) {
         case 'few clouds':
             return <PartlyCloudy />;
         case 'broken clouds':
-            return <OvercastClouds />;
+            return <PartlyCloudy />;
         case 'scattered clouds':
             return <PartlyCloudy />;
         case 'snow':

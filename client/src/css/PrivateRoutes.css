@@ -66,6 +66,7 @@
     font-size: 16px;
 }
 
+/* Forecast Container */
 
 .forecast-container {
     display: flex;
@@ -73,24 +74,24 @@
     gap: 1rem;
     flex-wrap: wrap;
     margin: 24vh 0;
-    width: 100%; 
-  }
-  
-  .forecast-card {
+    width: 100%;
+}
+
+.forecast-card {
     text-align: center;
     flex-basis: 9%;
-  }
-  
-  .forecast-icon {
+}
+
+.forecast-icon {
     width: 55px;
     max-width: 60px;
     height: auto;
-  }
-  
-  .forecast-minmax {
+}
+
+.forecast-minmax {
     margin-top: 2px;
     font-size: 12px;
-  }
+}
 
 
 .btn-logout {
@@ -117,28 +118,104 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 100vh;
     background-color: #d17300;
-  }
-  
+}
+
+
+
+
+
 
 /* Media Queries */
 @media(max-width: 1000px) {
 
     .overlay-elements {
         display: flex;
-        flex-direction: column;
+        flex-flow: row wrap;
+        /* align-items: center; */
+    }
+
+    .weather-container {
+        display: inline;
+        float: left;
+        width: 80%;
+        padding: 14px;
+        font-size: 24px;
+        font-weight: 550;
+    }
+
+    .weather-container>p {
+        font-size: 16px;
+        margin-top: 18px;
+        line-height: 0.35;
+    }
+
+    .forecast-container {
+        display: flex;
         justify-content: center;
-        align-items: center;
+        gap: 0.7rem;
         flex-wrap: wrap;
+        margin: 24vh 0;
+        width: 100%;
+        font-size: 0.8rem;
     }
 
-    .joke-container {
-        order: 1;
+    .forecast-card {
+        text-align: center;
+        flex-basis: 9%;
     }
 
-    .btn-logout {
-        font-size: 14px;
-        width: 88px;
+    .forecast-icon {
+        width: 35px;
+        height: auto;
     }
+
+}
+
+
+@media(max-width: 700px) {
+
+    .overlay-elements {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+    }
+
+    .weather-container {
+        display: inline;
+        float: left;
+        width: 70%;
+        padding: 14px;
+        font-size: 24px;
+        font-weight: 550;
+    }
+
+    .weather-container>p {
+        font-size: 16px;
+        margin-top: 18px;
+        line-height: 0.35;
+    }
+
+    .forecast-container {
+        display: flex;
+        justify-content: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin: 24vh 0;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .forecast-card {
+        text-align: center;
+        flex-basis: 9%;
+    }
+
+    .forecast-icon {
+        width: 35px;
+        height: auto;
+    }
+
+
 }
