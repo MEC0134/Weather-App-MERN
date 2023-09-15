@@ -12,7 +12,7 @@ const ForecastCard = (props) => {
                     className="forecast-icon"
                     src={"https://openweathermap.org/img/wn/" + props.icon + ".png"}
                 />
-                <p className="forecast-minmax">{props.min}&#8451;, {props.max}&#8451;</p>
+                <p className="forecast-minmax">{props.min}&#8451; {props.max}&#8451;</p>
             </div>
         </>
     )

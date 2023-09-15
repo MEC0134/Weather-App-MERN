@@ -124,16 +124,12 @@ const Home = () => {
 
         <div className="weather-component">
           {loading ? (
-            <LoadingSpinner /> 
+            <LoadingSpinner />
           ) : (
             <WeatherDisplay description={weatherToday.description} />
           )}
         </div>
-
-
       </div>
-
-
     </>
   )
 }
