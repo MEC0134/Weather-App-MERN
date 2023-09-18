@@ -9,10 +9,10 @@ module.exports.getJoke = async (jokeCategory) => {
 
         const words = joke.split(' ');
 
-        const maxWordCount = 20;
+        const maxWordCount = 18;
 
         if (words.length > maxWordCount) {
-            return module.exports.getJoke(jokeCategory, maxWordCount);
+            return module.exports.getJoke(jokeCategory);
         }
 
         return joke;

@@ -18,6 +18,8 @@ function WeatherDisplay(props) {
             return <Rain />;
         case 'shower rain':
             return <Rain />;
+        case 'moderate rain':
+            return <Rain />;
         case 'thunderstorm':
             return <ThunderStorm />;
         case 'overcast clouds':

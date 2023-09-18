@@ -100,6 +100,7 @@ const Home = () => {
           <div className="joke-container">
             <p>{joke}</p>
           </div>
+          
           <div className="forecast-container">
             {loading ? (
               ''
