@@ -3,5 +3,4 @@ Project Changes/Updates:
 
 1. Make Loading page or improve speed 
 2. Create Cloudy Component
-3. Limit word count in smaller screens for joke
-4. Make Home Private (JWT)
+3. Make Home Private (JWT)

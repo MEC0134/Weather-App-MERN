@@ -13,7 +13,7 @@ const WeatherInfoCard = (props) => {
 
     return (
         <>
-            <h3 className="home-title">{capitalizeFirstLetter(props.city)}</h3>
+            <h3>{capitalizeFirstLetter(props.city)}</h3>
             <p>{Math.round(props.temperature)}&deg;C</p>
             <p>{capitalizeFirstLetter(props.description)}</p>
         </>

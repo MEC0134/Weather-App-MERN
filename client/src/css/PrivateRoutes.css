@@ -8,10 +8,11 @@
 /* Home  */
 #home-container {
     height: 85vh;
+    font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
 }
 
-.weather-container, 
+.weather-container,
 .joke-container {
     margin: 48px auto 0;
     padding: 18px;
@@ -27,12 +28,10 @@
 
 .weather-container {
     display: inline-block;
-    font-size: 24px;
     font-weight: 550;
 }
 
 .weather-container>p {
-    font-size: 16px;
     margin-top: 18px;
     line-height: 0.35;
 }
@@ -43,7 +42,6 @@
 }
 
 .choice-title {
-    font-size: 2.3rem;
     padding: 12px;
 }
 
@@ -65,7 +63,6 @@
 
 .joke-container>p {
     line-height: 1rem;
-    font-size: 16px;
 }
 
 /* Forecast Container */
@@ -74,14 +71,14 @@
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     margin: 24vh 0;
     width: 100%;
 }
 
 .forecast-card {
     text-align: center;
-    flex-basis: 9%;
+    flex-basis: 11%;
 }
 
 .forecast-icon {
@@ -92,7 +89,6 @@
 
 .forecast-minmax {
     margin-top: 2px;
-    font-size: 12px;
 }
 
 
@@ -128,7 +124,6 @@
 
 
 
-
 /* Media Queries */
 @media(max-width: 1000px) {
 
@@ -143,12 +138,10 @@
         float: left;
         width: 80%;
         padding: 14px;
-        font-size: 24px;
         font-weight: 550;
     }
 
     .weather-container>p {
-        font-size: 16px;
         margin-top: 18px;
         line-height: 0.35;
     }
@@ -160,7 +153,6 @@
         flex-wrap: wrap;
         margin: 4vh 0;
         width: 100%;
-        font-size: 0.8rem;
     }
 
     .forecast-card {
@@ -178,6 +170,10 @@
 
 @media(max-width: 800px) {
 
+    #home-container {
+        font-size: 0.8rem;
+    }
+
     .overlay-elements {
         display: flex;
         flex-flow: row wrap;
@@ -188,28 +184,18 @@
         display: inline;
         float: left;
         width: 70%;
+        margin-bottom: 8rem;
         padding: 14px;
-        font-size: 24px;
         font-weight: 550;
     }
 
     .weather-container>p {
-        font-size: 16px;
         margin-top: 18px;
         line-height: 0.35;
     }
 
-    .joke-container {
-        display: inline;
-        float: right;
-        width: 18%;
-        padding: 14px;
-        margin: 12px 48px 0 0;
-    }
-    
     .joke-container>p {
         line-height: 1rem;
-        font-size: 16px;
     }
 
     .forecast-container {
@@ -217,9 +203,8 @@
         justify-content: center;
         gap: 1.2rem;
         flex-wrap: wrap;
-        margin: 6rem 0;
+        margin: 6rem 0 0 0;
         width: 100%;
-        font-size: 0.8rem;
     }
 
     .forecast-card {
@@ -256,17 +241,8 @@
         line-height: 0.35;
     }
 
-    .joke-container {
-        display: inline;
-        float: right;
-        width: 18%;
-        padding: 14px;
-        margin: 12px 48px 0 0;
-    }
-    
     .joke-container>p {
         line-height: 1rem;
-        font-size: 16px;
     }
 
     .forecast-container {
@@ -313,10 +289,9 @@
     .joke-container {
         display: none;
     }
-    
+
     .joke-container>p {
         line-height: 1rem;
-        font-size: 16px;
     }
 
     .forecast-container {
