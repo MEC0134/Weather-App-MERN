@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -39,11 +39,31 @@ const Home = () => {
   const navigate = useNavigate();
 
 
+  const verifyCookie = useMemo(() => async () => {
+    if (!cookies.token) {
+      navigate("/login");
+    }
+
+    const { data } = await axios.post(
+      "http://localhost:8000/choice",
+      {},
+      { withCredentials: true }
+    );
+
+
+    const { status, user } = data;
+
+    return status ? ' ' : (removeCookie("token"), navigate("/login"));
+  }, [cookies, navigate, removeCookie]);
+
+  useEffect(() => {
+    verifyCookie();
+
+  }, [verifyCookie]);
+
+
   useEffect(() => {
     const fetchData = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-      }
 
       try {
 
@@ -100,7 +120,7 @@ const Home = () => {
           <div className="joke-container">
             <p>{joke}</p>
           </div>
-          
+
           <div className="forecast-container">
             {loading ? (
               ''

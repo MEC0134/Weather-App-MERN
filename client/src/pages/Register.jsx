@@ -45,10 +45,8 @@ const Register = () => {
       try {
         const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
 
-        console.log("Response data:", data); // Log the response data for debugging
 
         const { success, message } = data;
-        console.log(data);
 
         if (success) {
           handleSuccess(message);
@@ -61,7 +59,6 @@ const Register = () => {
         if (!error.response.data.success) {
           handleError(error.response.data.message);
         }
-
         console.log("Axios error:", error);
       }
 

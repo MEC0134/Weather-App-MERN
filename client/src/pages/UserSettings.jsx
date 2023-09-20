@@ -20,7 +20,7 @@ const UserSettings = () => {
     });
 
     const handleInput = (event) => {
-        
+
         const { name, value } = event.target;
         setUserChoice(({
             ...userChoice,
@@ -41,7 +41,6 @@ const UserSettings = () => {
 
         const { status, user } = data;
         setUsername(user);
-        console.log(data);
 
         return status ? ' ' : (removeCookie("token"), navigate("/login"));
     }, [cookies, navigate, removeCookie]);
@@ -54,12 +53,9 @@ const UserSettings = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
-
             const formData = await axios.post("http://localhost:8000/home", { ...userChoice, user: username }, { withCredentials: true });
-
-            const { success, user } = formData.data;
+            const { success } = formData.data;
 
             if (success) {
                 setTimeout(() => {
@@ -70,7 +66,6 @@ const UserSettings = () => {
         } catch (error) {
             console.log(error);
         }
-
         setUserChoice({ country: "", city: "", category: "" });
     }
 

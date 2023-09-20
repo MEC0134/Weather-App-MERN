@@ -1,6 +1,0 @@
-Project Changes/Updates:
-
-
-1. Make Loading page or improve speed 
-2. Create Cloudy Component
-3. Make Home Private (JWT)

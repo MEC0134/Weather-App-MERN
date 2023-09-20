@@ -4,6 +4,7 @@ const { getJoke } = require('../util/getJokeApi');
 const { getWeather } = require('../util/getWeather');
 
 
+
 module.exports.SetUserSettings = async (req, res, next) => {
 
   try {
@@ -24,6 +25,7 @@ module.exports.SetUserSettings = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
+  
 }
 
 
