@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -44,7 +44,7 @@ const Login = () => {
             if (!appSetUp && success) {
                 handleSuccess(message);
                 setTimeout(() => {
-                    navigate('/userSettings');
+                    navigate(`/userSettings/${formData.username}`);
                 }, 1000);
             } else {
                 handleSuccess(message);
@@ -79,7 +79,6 @@ const Login = () => {
                     <p className="redirect-user">Don't have an account?<Link style={{ textDecoration: "none" }} to={"/register"}>Register</Link></p>
                 </form>
             </div>
-            <ToastContainer />
         </div>
     );
 }

@@ -1,55 +1,35 @@
 // private page
-import React from "react";
-import { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import PrivateRoute from "./components/PrivateRoute";
 import '../css/PrivateRoutes.css';
 
 
 const UserSettings = () => {
 
+    const { username } = useParams();
+
     const navigate = useNavigate();
-    const [cookies, removeCookie] = useCookies([]);
-    const [username, setUsername] = useState("");
+    const [userName, setUserName] = useState('');
     const [userChoice, setUserChoice] = useState({
         country: "",
         city: "",
         category: ""
     });
 
-    const handleInput = (event) => {
+    useEffect(() => {
+        setUserName(username);
+    }, [username]);
 
+    const handleInput = (event) => {
         const { name, value } = event.target;
         setUserChoice(({
             ...userChoice,
             [name]: value
         }));
     };
-
-    const verifyCookie = useMemo(() => async () => {
-        if (!cookies.token) {
-            navigate("/login");
-        }
-
-        const { data } = await axios.post(
-            "http://localhost:8000/choice",
-            {},
-            { withCredentials: true }
-        );
-
-        const { status, user } = data;
-        setUsername(user);
-
-        return status ? ' ' : (removeCookie("token"), navigate("/login"));
-    }, [cookies, navigate, removeCookie]);
-
-    useEffect(() => {
-        verifyCookie();
-
-    }, [verifyCookie]);
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -69,31 +49,32 @@ const UserSettings = () => {
         setUserChoice({ country: "", city: "", category: "" });
     }
 
-
     return (
-        <>
-            <div id="choice-page">
-                <h4 className="choice-title">Hi {username}</h4>
-                <h5>Lets set up your app settings, please choose your location and joke category for your app.</h5>
-                <div className="row align-items-center" style={{ height: "60vh" }}>
-                    <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "300px" }}>
-                        <form onSubmit={handleSubmit} >
-                            <input onChange={handleInput} value={userChoice.country} name="country" type="text" placeholder="Country" className="form-control" required></input>
-                            <input onChange={handleInput} value={userChoice.city} name="city" type="text" placeholder="City" className="form-control" required></input>
-                            <select onChange={handleInput} className="form-control select" value={userChoice.category} name="category">
-                                <option value="" disabled>Joke category</option>
-                                <option value="Programming">Programming</option>
-                                <option value="Misc">Random</option>
-                                <option value="Dark">Dark</option>
-                                <option value="Spooky">Spooky</option>
-                                <option value="Pun">Pun</option>
-                            </select>
-                            <button className="btn btn-primary choiceForm-btn" type="submit">Submit</button>
-                        </form>
+        <PrivateRoute>
+            <>
+                <div id="choice-page">
+                    <h4 className="choice-title">Hi {userName}</h4>
+                    <h5>Lets set up your app settings, please choose your location and joke category for your app.</h5>
+                    <div className="row align-items-center" style={{ height: "60vh" }}>
+                        <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "300px" }}>
+                            <form onSubmit={handleSubmit} >
+                                <input onChange={handleInput} value={userChoice.country} name="country" type="text" placeholder="Country" className="form-control" required></input>
+                                <input onChange={handleInput} value={userChoice.city} name="city" type="text" placeholder="City" className="form-control" required></input>
+                                <select onChange={handleInput} className="form-control select" value={userChoice.category} name="category">
+                                    <option value="" disabled>Joke category</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="Misc">Random</option>
+                                    <option value="Dark">Dark</option>
+                                    <option value="Spooky">Spooky</option>
+                                    <option value="Pun">Pun</option>
+                                </select>
+                                <button className="btn btn-primary choiceForm-btn" type="submit">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
+            </>
+        </PrivateRoute>
     )
 }
 

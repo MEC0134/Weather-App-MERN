@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 import Footer from "./layouts/Footer";
 import Header from "./layouts/Header";
@@ -7,31 +7,29 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import UserSettings from "./pages/UserSettings";
+import { ToastContainer } from "react-toastify";
+
 
 
 function App() {
-
-  const location = useLocation();
-
-  const isHomeRoute = location.pathname === "/home";
 
   return (
 
     <div className="App">
 
       <Header />
+      <ToastContainer />
 
-      <Routes>
-        <Route path="/" element={<Welcome />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/userSettings" element={<UserSettings />}></Route>
+        <Routes>
+          <Route path="/" element={<Welcome />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/userSettings/:username" element={<UserSettings />}></Route>
+        </Routes>
 
 
-      </Routes>
-
-      {!isHomeRoute && <Footer />}
+       <Footer />
 
     </div>
   );

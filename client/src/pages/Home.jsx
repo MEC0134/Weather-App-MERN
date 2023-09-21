@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,6 +6,7 @@ import WeatherDisplay from "./WeatherDisplay";
 import ForecastCard from "./components/ForecastCards";
 import WeatherInfoCard from "./components/WeatherInfoCard";
 import LoadingSpinner from "./components/LoadingSpinner";
+import PrivateRoute from "./components/PrivateRoute";
 import '../css/PrivateRoutes.css';
 
 const Home = () => {
@@ -37,29 +38,6 @@ const Home = () => {
 
   const [cookies, removeCookie] = useCookies([]);
   const navigate = useNavigate();
-
-
-  const verifyCookie = useMemo(() => async () => {
-    if (!cookies.token) {
-      navigate("/login");
-    }
-
-    const { data } = await axios.post(
-      "http://localhost:8000/choice",
-      {},
-      { withCredentials: true }
-    );
-
-
-    const { status, user } = data;
-
-    return status ? ' ' : (removeCookie("token"), navigate("/login"));
-  }, [cookies, navigate, removeCookie]);
-
-  useEffect(() => {
-    verifyCookie();
-
-  }, [verifyCookie]);
 
 
   useEffect(() => {
@@ -99,59 +77,61 @@ const Home = () => {
   };
 
   return (
-    <>
+    <PrivateRoute>
+      <>
 
-      <div id="home-container">
+        <div id="home-container">
 
-        <div className="overlay-elements">
+          <div className="overlay-elements">
 
-          <div className="weather-container">
-            {loading ? (
-              ''
-            ) : (
-              <WeatherInfoCard
-                city={user.userCity}
-                temperature={weatherToday.temperature}
-                description={weatherToday.description}
-              />
-            )}
-          </div>
-
-          <div className="joke-container">
-            <p>{joke}</p>
-          </div>
-
-          <div className="forecast-container">
-            {loading ? (
-              ''
-            ) : (
-              Object.keys(forecast).map((day, index) => (
-                <ForecastCard
-                  key={index}
-                  day={day}
-                  icon={forecast[day].Icon}
-                  min={forecast[day].Min}
-                  max={forecast[day].Max}
+            <div className="weather-container">
+              {loading ? (
+                ''
+              ) : (
+                <WeatherInfoCard
+                  city={user.userCity}
+                  temperature={weatherToday.temperature}
+                  description={weatherToday.description}
                 />
-              ))
+              )}
+            </div>
+
+            <div className="joke-container">
+              <p>{joke}</p>
+            </div>
+
+            <div className="forecast-container">
+              {loading ? (
+                ''
+              ) : (
+                Object.keys(forecast).map((day, index) => (
+                  <ForecastCard
+                    key={index}
+                    day={day}
+                    icon={forecast[day].Icon}
+                    min={forecast[day].Min}
+                    max={forecast[day].Max}
+                  />
+                ))
+              )}
+            </div>
+
+            <div className="logout">
+              <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
+            </div>
+
+          </div>
+
+          <div className="weather-component">
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              <WeatherDisplay description={weatherToday.description} />
             )}
           </div>
-
-          <div className="logout">
-            <button className="btn btn-primary btn-logout" onClick={Logout}>Logout</button>
-          </div>
-
         </div>
-
-        <div className="weather-component">
-          {loading ? (
-            <LoadingSpinner />
-          ) : (
-            <WeatherDisplay description={weatherToday.description} />
-          )}
-        </div>
-      </div>
-    </>
+      </>
+    </PrivateRoute>
   )
 }
 
