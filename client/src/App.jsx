@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import UserSettings from "./pages/UserSettings";
 import { ToastContainer } from "react-toastify";
-
+import "./pages/css/welcome.css";
 
 
 function App() {
@@ -20,16 +20,16 @@ function App() {
       <Header />
       <ToastContainer />
 
-        <Routes>
-          <Route path="/" element={<Welcome />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/userSettings/:username" element={<UserSettings />}></Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Welcome />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/userSettings/:username" element={<UserSettings />}></Route>
+      </Routes>
 
 
-       <Footer />
+      <Footer />
 
     </div>
   );

@@ -8,7 +8,9 @@ import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
 
 function Welcome() {
 
+
     return (
+
         <div className="welcome-container">
             <div className="welcome-icons">
                 <WbSunnyOutlinedIcon className="sun" fontSize="large" />
@@ -16,6 +18,7 @@ function Welcome() {
                 <ThunderstormOutlinedIcon className="storm" fontSize="large" />
                 <AcUnitOutlinedIcon className="snow" fontSize="large" />
             </div>
+
             <div className="content inner-cover">
                 <main>
                     <h1 className="cover-heading">Welcome to  Clima...</h1>

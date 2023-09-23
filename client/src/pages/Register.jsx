@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-
+import { toast } from "react-toastify";
+import "./css/forms.css";
 
 const Register = () => {
 
@@ -23,7 +23,6 @@ const Register = () => {
     }));
   }
 
-  // notifications
   const handleError = err =>
     toast.error(err, {
       position: "top-center"
@@ -67,53 +66,56 @@ const Register = () => {
   }
 
 
-
   return (
     <>
-      <div className="row align-items-center" style={{ height: "87vh" }}>
-        <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame" style={{ height: "525px" }}>
-          <h1 className="form-title">Register</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              value={formData.email}
-              name="email"
-              className="form-control"
-              onChange={handleInput}
-              required
-            />
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              value={formData.username}
-              name="username"
-              className="form-control"
-              onChange={handleInput}
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              value={formData.password}
-              name="password"
-              className="form-control"
-              onChange={handleInput}
-              required
-            />
-            <label htmlFor="confirmpassword">Confirm Password</label>
-            <input
-              type="password"
-              value={formData.confirmpassword}
-              name="confirmpassword"
-              className="form-control"
-              onChange={handleInput}
-              required
-            />
-            <button type="submit" className="btn btn-primary ">Register</button>
-            <p className="redirect-user"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
-          </form>
+      <div id="register-container">
+        <div className="row align-items-center" style={{ height: "85vh" }}>
+          <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame register-form">
+            <h1 className="form-title">Register</h1>
+            <div class="form-group">
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  name="email"
+                  className="form-control"
+                  onChange={handleInput}
+                  required
+                />
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  value={formData.username}
+                  name="username"
+                  className="form-control"
+                  onChange={handleInput}
+                  required
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  value={formData.password}
+                  name="password"
+                  className="form-control"
+                  onChange={handleInput}
+                  required
+                />
+                <label htmlFor="confirmpassword">Confirm Password</label>
+                <input
+                  type="password"
+                  value={formData.confirmpassword}
+                  name="confirmpassword"
+                  className="form-control"
+                  onChange={handleInput}
+                  required
+                />
+                <button type="submit" className="btn btn-primary ">Register</button>
+                <p className="redirect-user"> Already have an account?<Link style={{ textDecoration: "none" }} to={"/login"}>Login</Link></p>
+              </form>
+            </div>
 
+          </div>
         </div>
       </div>
 
