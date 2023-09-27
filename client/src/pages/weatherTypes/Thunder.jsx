@@ -9,11 +9,8 @@ const ThunderStorm = () => {
 
     return (
         <div id="thunder-storm">
-
             <Lottie className="thunder" loop={true} animationData={Thunder} />
             <Lottie className="thunder-rain" loop={true} animationData={Rain} />
-
-
         </div>
     )
 

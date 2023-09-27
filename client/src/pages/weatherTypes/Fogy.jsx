@@ -3,7 +3,6 @@ import Lottie from "lottie-react";
 import Fogy from "../../animations/fog.json";
 import '../../css/weatherTypes.css';
 
-
 const Fog = () => {
 
     return (

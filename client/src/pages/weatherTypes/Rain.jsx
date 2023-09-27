@@ -6,15 +6,9 @@ import '../../css/weatherTypes.css';
 
 const Rainy = () => {
 
-
-
-
   return (
     <div id="rainy">
-
       <Lottie className="rain" loop={true} animationData={Rain}/>
-      
-
     </div>
   )
 

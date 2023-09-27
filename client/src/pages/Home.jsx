@@ -9,6 +9,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import PrivateRoute from "./components/PrivateRoute";
 import '../css/PrivateRoutes.css';
 
+
 const Home = () => {
 
   const getToday = () => {
@@ -20,9 +21,8 @@ const Home = () => {
   const today = getToday();
   const [loading, setLoading] = useState(true);
   const [joke, setJoke] = useState("");
-
   const [user, setUser] = useState({
-    userCity: "",
+    userCity: ""
   });
 
   const [forecast, setForecast] = useState({

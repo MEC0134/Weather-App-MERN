@@ -6,9 +6,6 @@ import '../../css/weatherTypes.css';
 
 const ClearSky = () => {
 
-
-
-
   return (
     <div id="clear-sky">
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import FormValidate from "./components/FormValidate";
 import "./css/forms.css";
 
 const Register = () => {
@@ -38,29 +39,33 @@ const Register = () => {
     event.preventDefault();
 
     if (formData.password !== formData.confirmpassword) {
-      toast.error('Passwords do not match, try again!', { position: "top-center" });
+      toast.error('Passwords do not match!', { position: "top-center" });
     } else {
 
-      try {
-        const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
 
-
-        const { success, message } = data;
-
-        if (success) {
-          handleSuccess(message);
-          setTimeout(() => {
-            navigate('/login');
-          }, 1000);
+      if (!FormValidate(formData.email)) {
+        toast.error('Enter valid email format!', { position: "top-center" });
+      } else {
+        try {
+          const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
+  
+  
+          const { success, message } = data;
+  
+          if (success) {
+            handleSuccess(message);
+            setTimeout(() => {
+              navigate('/login');
+            }, 1000);
+          }
+  
+        } catch (error) {
+          if (!error.response.data.success) {
+            handleError(error.response.data.message);
+          }
+          console.log("Axios error:", error);
         }
-
-      } catch (error) {
-        if (!error.response.data.success) {
-          handleError(error.response.data.message);
-        }
-        console.log("Axios error:", error);
       }
-
       setformData({ ...formData, email: "", username: "", password: "", confirmpassword: "" });
     }
   }
@@ -72,7 +77,7 @@ const Register = () => {
         <div className="row align-items-center" style={{ height: "85vh" }}>
           <div className="mx-auto col-8 col-md-6 col-lg-4 form-frame register-form">
             <h1 className="form-title">Register</h1>
-            <div class="form-group">
+            <div className="form-group">
               <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input

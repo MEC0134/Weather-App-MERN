@@ -8,7 +8,6 @@ import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
 
 function Welcome() {
 
-
     return (
 
         <div className="welcome-container">
