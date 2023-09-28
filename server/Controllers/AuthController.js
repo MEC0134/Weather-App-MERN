@@ -1,5 +1,6 @@
 const User = require("../Models/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
+const { sanitizeRegForm, sanitizeLogForm } = require("../util/trimForms");
 const bcrypt = require("bcrypt");
 
 
@@ -7,7 +8,7 @@ module.exports.Signup = async (req, res, next) => {
 
     try {
 
-        const { email, password, username } = req.body;
+        const { email, password, username } =  sanitizeRegForm(req.body);
 
         const existingUser = await User.findOne({ email });
 
@@ -34,7 +35,8 @@ module.exports.Signup = async (req, res, next) => {
 
 module.exports.Login = async (req, res, next) => {
     try {
-        const { username, password } = req.body;
+        
+        const { username, password } = sanitizeLogForm(req.body);
 
         const user = await User.findOne({ username }).populate('UserChoice');
 
@@ -58,10 +60,10 @@ module.exports.Login = async (req, res, next) => {
         if (user.UserChoice.Country === null || user.UserChoice.City === null) {
             res.status(201).json({ message: "Login Successfull", success: true, appSetUp: false });
         } else {
-            res.status(201).json({message: "Login Successfull", success: true, appSetUp: true});
+            res.status(201).json({ message: "Login Successfull", success: true, appSetUp: true });
         }
-        
-        
+
+
         next();
 
     } catch (error) {

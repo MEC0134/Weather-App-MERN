@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import FormValidate from "./components/FormValidate";
@@ -42,11 +42,12 @@ const Register = () => {
       toast.error('Passwords do not match!', { position: "top-center" });
     } else {
 
-
       if (!FormValidate(formData.email)) {
-        toast.error('Enter valid email format!', { position: "top-center" });
+        toast.error('Invalid email format!', { position: "top-center" });
       } else {
+        
         try {
+
           const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
   
   
