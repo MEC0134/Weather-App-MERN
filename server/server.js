@@ -15,7 +15,7 @@ mongoose
     .catch((err) => console.error(err));
 
 app.use(cors({
-    origin: [""],
+    origin: ["https://cima-frontend.onrender.com/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 })
