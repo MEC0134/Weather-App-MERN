@@ -48,7 +48,7 @@ const Register = () => {
         
         try {
 
-          const { data } = await axios.post("http://localhost:8000/signup", { ...formData }, { withCredentials: true });
+          const { data } = await axios.post("https://clima-g901.onrender.com/signup", { ...formData }, { withCredentials: true });
   
   
           const { success, message } = data;

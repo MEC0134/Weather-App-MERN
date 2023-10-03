@@ -36,7 +36,7 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const { data } = await axios.post("http://localhost:8000/login", {
+            const { data } = await axios.post("https://clima-g901.onrender.com/login", {
                 ...formData
             }, { withCredentials: true });
 

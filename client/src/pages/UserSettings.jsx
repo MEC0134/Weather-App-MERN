@@ -34,7 +34,7 @@ const UserSettings = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const formData = await axios.post("http://localhost:8000/home", { ...userChoice, user: username }, { withCredentials: true });
+            const formData = await axios.post("https://clima-g901.onrender.com/home", { ...userChoice, user: username }, { withCredentials: true });
             const { success } = formData.data;
 
             if (success) {

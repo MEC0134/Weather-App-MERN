@@ -45,7 +45,7 @@ const Home = () => {
 
       try {
 
-        const { data } = await axios.get("http://localhost:8000/user-data", { withCredentials: true });
+        const { data } = await axios.get("https://clima-g901.onrender.com/user-data", { withCredentials: true });
         const { success, user, userJoke, weatherForecast } = data;
         const todayWeather = weatherForecast[today];
 
