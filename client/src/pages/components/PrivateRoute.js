@@ -19,7 +19,7 @@ const PrivateRoute = ({ children }) => {
         }
 
         const { data } = await axios.post(
-            "https://clima-g901.onrender.com/private-request",
+            "https://clima-api.onrender.com/private-request",
             {},
             { withCredentials: true }
         );
