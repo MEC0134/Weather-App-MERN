@@ -123,11 +123,14 @@ const Home = () => {
           </div>
 
           <div className="weather-component">
+            {/* Comment out the below section from here and import the components
+            in the weatherTypes folder to see different animations */}
             {loading ? (
               <LoadingSpinner />
             ) : (
               <WeatherDisplay description={weatherToday.description} />
             )}
+            {/* Until here */}
           </div>
         </div>
       </>
